@@ -3,3 +3,6 @@ author: Cadiducho
 version: ${project.version}
 main: com.cadiducho.minegram.MinegramPlugin
 descripcion: Telegram Bot API implementation to Bukkit
+commands: 
+    minegram:
+        description: Main command

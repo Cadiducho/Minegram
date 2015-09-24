@@ -13,6 +13,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
 import java.io.IOException;
+import org.bukkit.plugin.Plugin;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
 
@@ -20,10 +21,14 @@ import org.json.JSONObject;
 public class TelegramBot implements BotAPI {
     
     private final String apiUrl;
+    private final Plugin bukkitPlugin;
+    
     private final ObjectMapper mapper = new ObjectMapper();
 
-    public TelegramBot(String token){
+    public TelegramBot(String token, Plugin plugin){
         apiUrl = "https://api.telegram.org/bot" + token + "/";
+        bukkitPlugin = plugin;
+        MinegramPlugin.bots.put(this, bukkitPlugin);
     }
 
     @Override
@@ -37,11 +42,15 @@ public class TelegramBot implements BotAPI {
         }
     }
     
+    @Override
+    public Plugin getBukkitPlugin() {
+        return bukkitPlugin;
+    }
+    
     private String handleRequest(BaseRequest request) throws TelegramException {
         JSONObject jsonResult = null;
         try {
-            jsonResult = request
-                    .asJson().getBody().getObject();
+            jsonResult = request.asJson().getBody().getObject();
         } catch (UnirestException e) {
             throw new TelegramException("Could not get a response.", e);
         }

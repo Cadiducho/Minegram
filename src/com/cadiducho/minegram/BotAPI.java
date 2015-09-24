@@ -9,6 +9,7 @@ package com.cadiducho.minegram;
 
 import com.cadiducho.minegram.api.*;
 import com.cadiducho.minegram.api.exception.*;
+import org.bukkit.plugin.Plugin;
 
 /*
  * Interface to build Telegrams Bots 
@@ -21,5 +22,11 @@ public interface BotAPI {
      * @throws TelegramException
      */
     public User getMe() throws TelegramException;
+    
+    /**
+     * Get Bukkit Plugin object. 
+     * @return Plugin
+     */
+    public Plugin getBukkitPlugin();
     
 }

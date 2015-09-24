@@ -28,6 +28,9 @@
                                 <includes>
                                     
                                 </includes>
+                                <excludes>
+                                    <exclude>commons-codec:commons-codec</exclude>
+                                </excludes>
                             </artifactSet>
                         </configuration>
                     </execution>
