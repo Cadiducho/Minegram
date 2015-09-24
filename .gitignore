@@ -1,0 +1,9 @@
+# Ignores Maven #
+####################
+/target/
+
+# Others #
+##########
+*.jar
+*.class
+nb-configuration.xml
