@@ -11,30 +11,27 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/*
- * Telegram User or Telegram Bot
- */
 @ToString
 @Getter @Setter
-public class User {
+public class Contact {
     
     /**
-     * Unique identifier for this user or bot
+     * Contact's phone number
      */
-    private Integer id;
+    private String phone_number;
     
     /**
-     * User‘s or bot’s first name
+     * Contact's first name
      */
     private String first_name;
     
     /**
-     * Optional. User‘s or bot’s last name
+     * Optional. Contact's last name
      */
     private String last_name;
     
     /**
-     * Optional. User‘s or bot’s username
+     * Optional. Contact's user identifier in Telegram
      */
-    private String username;
+    private Integer user_id;
 }

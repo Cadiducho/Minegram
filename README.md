@@ -1,4 +1,4 @@
-Minegram - Telegram Bot Api to Minecraft
+Minegram - Telegram Bot API to Minecraft
 ========================================
 > This API is a unofficial one. Lets you develop Telegram Bots easily to Bukkit Plugins! Check [Telegram Bot API](https://core.telegram.org/bots) for more info.
 
