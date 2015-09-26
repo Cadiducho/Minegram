@@ -25,11 +25,9 @@
                         </goals>
                         <configuration>
                             <artifactSet>
-                                <includes>
-                                    
-                                </includes>
                                 <excludes>
                                     <exclude>commons-codec:commons-codec</exclude>
+                                    <exclude>javax.annotation:jsr250-api</exclude>
                                 </excludes>
                             </artifactSet>
                         </configuration>
@@ -72,12 +70,20 @@
             <scope>provided</scope>
         </dependency>
     
-        <!--General libs -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.6</version>
+            <version>1.14.8</version>
+            <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        
+        <!--General libs -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
