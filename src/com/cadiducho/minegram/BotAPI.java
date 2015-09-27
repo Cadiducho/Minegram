@@ -36,16 +36,16 @@ public interface BotAPI {
     
     /**
      * Use this method to send text messages. On success, the sent {@link Message} is returned.
-     * @param chatId Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
      * @param text Text of the message to be sent
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendMessage(Integer chatId, String text) throws TelegramException;
+    public Message sendMessage(Integer chat_id, String text) throws TelegramException;
     
     /**
      * Use this method to send text messages. On success, the sent {@link Message} is returned.
-     * @param chatId Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
      * @param text Text of the message to be sent
      * @param parse_mode Send Markdown, if you want Telegram apps to show bold, italic and inline URLs in your bot's message. For the moment, only Telegram for Android supports this.
      *                  See https://core.telegram.org/bots/api#using-markdown
@@ -56,7 +56,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendMessage(Integer chatId, String text, String parse_mode, Boolean disable_web_page_preview, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendMessage(Integer chat_id, String text, String parse_mode, Boolean disable_web_page_preview, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to forward messages of any kind. On success, the sent {@link Message} is returned.
@@ -66,20 +66,26 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
+    
     public Message forwardMessage(Integer chat_id, Integer from_chat_id, Integer message_id) throws TelegramException;
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
      * @param chat_id Unique identifier for the message recipient — User or GroupChat id
      * @param photo Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.
-     * @param caption Photo caption (may also be used when resending photos by file_id).
-     * @param reply_to_message_id If the message is a reply, ID of the original message
-     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendPhoto(Integer chat_id, String photo, String caption, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendPhoto(Integer chat_id, String photo) throws TelegramException;
+    
+    /**
+     * Use this method to send photos. On success, the sent {@link Message} is returned.
+     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param photo Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendPhoto(Integer chat_id, File photo) throws TelegramException;
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
@@ -92,7 +98,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendPhoto(Integer chat_id, File photo, String caption, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendPhoto(Integer chat_id, Object photo, String caption, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display them in the music player. 
@@ -143,28 +149,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendAudio(Integer chat_id, String audio, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
-    
-        /**
-     * Use this method to send audio files, if you want Telegram clients to display them in the music player. 
-     * Your audio must be in the .mp3 format. On success, the sent {@link Message} is returned. 
-     * Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
-     * 
-     * For backward compatibility, when the fields title and performer are both empty and the mime-type of the file to be sent is not audio/mpeg, 
-     * the file will be sent as a playable voice message. For this to work, the audio must be in an .ogg file encoded with OPUS. 
-     * This behavior will be phased out in the future. For sending voice messages, use the sendVoice method instead.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
-     * @param audio Audio file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
-     * @param duration Duration of the audio in seconds
-     * @param performer Performer
-     * @param title Track name 
-     * @param reply_to_message_id If the message is a reply, ID of the original message
-     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
-     * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
-     */
-    public Message sendAudio(Integer chat_id, File audio, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendAudio(Integer chat_id, Object audio, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -200,21 +185,8 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendDocument(Integer chat_id, String document, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendDocument(Integer chat_id, Object document, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
-    /**
-     * Use this method to send general files. On success, the sent {@link Message} is returned. 
-     * Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
-     * @param document File to send. You can either pass a file_id as String to resend a file that is already on the Telegram servers, 
-     *                  or upload a new file using multipart/form-data.
-     * @param reply_to_message_id If the message is a reply, ID of the original message
-     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
-     * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
-     */
-    public Message sendDocument(Integer chat_id, File document, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send .webp stickers. On success, the sent {@link Message} is returned.
@@ -247,20 +219,8 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendSticker(Integer chat_id, String sticker, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendSticker(Integer chat_id, Object sticker, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
-    /**
-     * Use this method to send .webp stickers. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
-     * @param sticker Sticker to send. You can either pass a file_id as String to resend a sticker that is already on the Telegram servers, 
-     *                  or upload a new sticker using multipart/form-data.
-     * @param reply_to_message_id If the message is a reply, ID of the original message
-     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
-     * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
-     */
-    public Message sendSticker(Integer chat_id, File sticker, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as {@link Document}). 
@@ -300,23 +260,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVideo(Integer chat_id, String video, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
-    
-    /**
-     * Use this method to send general files. On success, the sent {@link Message} is returned. 
-     * Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
-     * @param video Video file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
-     * @param duration Duration of the audio in seconds
-     * @param performer Performer
-     * @param title Track name 
-     * @param reply_to_message_id If the message is a reply, ID of the original message
-     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
-     * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
-     */
-    public Message sendVideo(Integer chat_id, File video, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVideo(Integer chat_id, Object video, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
@@ -337,14 +281,10 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the message recipient — User or GroupChat id
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @param duration Duration of the audio in seconds 
-     * @param reply_to_message_id If the message is a reply, ID of the original message
-     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
-     * @return {@link Message}
+     * @return 
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVoice(Integer chat_id, String voice, Integer duration, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVoice(Integer chat_id, File voice) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
@@ -360,7 +300,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVoice(Integer chat_id, File voice, Integer duration, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVoice(Integer chat_id, Object voice, Integer duration, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send point on the map. On success, the sent {@link Message} is returned.
@@ -399,6 +339,29 @@ public interface BotAPI {
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean sendChatAction(Integer chat_id, String action) throws TelegramException;
+    
+    /**
+     * Types of ChatAction. Idea by Rainu
+     */
+    public static enum ChatAction {
+        typing, upload_photo, record_video, upload_video, record_audio,
+        upload_audio, upload_document, find_location;
+    }
+    
+    /**
+     * Use this method when you need to tell the user that something is happening on the bot's side. 
+     * The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
+     * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
+     * Watch more in https://core.telegram.org/bots/api#sendchataction
+     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param action Type of action to broadcast. 
+     *          Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, 
+     *          record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, 
+     *          find_location for location data.
+     * @return Boolean
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean sendChatAction(Integer chat_id, ChatAction action) throws TelegramException;
     
     /**
      * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.

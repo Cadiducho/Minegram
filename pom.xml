@@ -10,8 +10,21 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>cadiducho-repo</id>
+            <url>ftp://ftp.cadiducho.com/repo</url>
+        </repository>
+    </distributionManagement>
     <build>
         <sourceDirectory>src</sourceDirectory>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+      </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
