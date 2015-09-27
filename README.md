@@ -6,9 +6,9 @@ Minegram - Telegram Bot API to Minecraft
 	<a href="https://github.com/Cadiducho/Minegram/commits/master"><img src="https://img.shields.io/github/release/Cadiducho/Minegram.svg" alt="Project Version" /></a>
 	<a href="https://travis-ci.org/Cadiducho/Minegram"><img src="https://travis-ci.org/Cadiducho/Minegram.svg" alt="Project Status" /></a>
 </a>
-## Documentation
+## Documentation and Usage
 
-Work in progress. At the moment, you can browse source code or see the official [telegram bot api documentation](https://core.telegram.org/bots/api).
+Check [Minegram documentation](https://github.com/Cadiducho/Minegram/blob/master/Documentation.md).
 
 ## Maven Usage
 
