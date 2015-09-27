@@ -11,10 +11,12 @@ import com.cadiducho.minegram.api.exception.TelegramException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import org.apache.commons.lang.Validate;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 
 public class MinegramPlugin extends JavaPlugin {
@@ -28,16 +30,22 @@ public class MinegramPlugin extends JavaPlugin {
         Validate.notNull(instance, "Plugin cannot be null!");
         this.getLogger().log(Level.INFO, "Enabling Minegram {0} by Cadiducho", getDescription().getVersion());
         
-        this.getLogger().log(Level.INFO, "Loaded {0} bots.", bots.size());
-        if (!bots.isEmpty()) {
-            bots.forEach((bot, pluginLoader) -> { 
-                try {
-                    getLogger().log(Level.INFO, "@{0} loaded by {1}", new Object[]{bot.getMe().getUsername(), pluginLoader.getName()});
-                } catch (TelegramException ex) {
-                    getLogger().log(Level.INFO, "Could not retrieve any info from {0}'s bot: {1}", new Object[]{pluginLoader.getName(), ex.getMessage()});
+        new BukkitRunnable() {    
+            @Override
+            public void run() {
+                MinegramPlugin.instance.getLogger().log(Level.INFO, "Loaded {0} bots.", bots.size());
+                if (!bots.isEmpty()) {
+                    bots.forEach((bot, pluginLoader) -> { 
+                        try {
+                            getLogger().log(Level.INFO, "@{0} loaded by {1}", new Object[]{bot.getMe().getUsername(), pluginLoader.getName()});
+                        } catch (TelegramException ex) {
+                            getLogger().log(Level.INFO, "Could not retrieve any info from {0}'s bot: {1}", new Object[]{pluginLoader.getName(), ex.getMessage()});
+                        }
+                    });
                 }
-            });
-        }
+            }
+        }.runTaskLater(this, 1);
+        
     }
     
     @Override
@@ -55,11 +63,11 @@ public class MinegramPlugin extends JavaPlugin {
         if (label.equalsIgnoreCase("minegram")) {
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("list")) {
-                    sender.sendMessage("This server has loaded "+bots.size()+" bots:");
+                    sender.sendMessage(ChatColor.BLUE+"This server has loaded "+ChatColor.GREEN+bots.size()+ChatColor.BLUE+" bots:");
                     if (!bots.isEmpty()) {
                         bots.forEach((bot, pluginLoader) -> { 
                             try {
-                                sender.sendMessage("@"+bot.getMe().getUsername()+" loaded by "+pluginLoader.getName());
+                                sender.sendMessage(ChatColor.GREEN+"@"+bot.getMe().getUsername()+ChatColor.BLUE+" loaded by "+ChatColor.GREEN+pluginLoader.getName());
                             } catch (TelegramException ex) {
                                 sender.sendMessage("Could not retrieve any info from "+pluginLoader.getName()+"'s bot: "+ex.getMessage());
                             }
@@ -68,7 +76,7 @@ public class MinegramPlugin extends JavaPlugin {
                     return true;
                 }
             }
-            sender.sendMessage("This server is running Minegram "+getDescription().getVersion());
+            sender.sendMessage(ChatColor.BLUE+"This server is running Minegram "+ChatColor.GREEN+getDescription().getVersion());
         }
         return true;
     }
