@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represents a video file.
+ */
 @ToString
 @Getter @Setter
 public class Video {

@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represents one size of a photo or a file / sticker thumbnail.
+ */
 @ToString
 @Getter @Setter
 public class PhotoSize {

@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
+ */
 @ToString
 @Getter @Setter
 public class ReplyKeyboardMarkup {

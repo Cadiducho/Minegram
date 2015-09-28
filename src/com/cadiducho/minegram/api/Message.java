@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represents a message.
+ */
 @ToString
 @Getter @Setter
 public class Message {
@@ -34,7 +37,7 @@ public class Message {
     /**
      * Conversation the message belongs to — user in case of a private message, GroupChat in case of a group. User or GroupChat.
      */
-    private Object chat;
+    private Chat chat;
     
     /**
      * Optional. For forwarded messages, sender of the original message
@@ -95,7 +98,12 @@ public class Message {
      * Optional. Message is a shared contact, information about the contact
      */
     private Contact contact;
-
+    
+    /**
+     * Optional. Message is a shared location, information about the location
+     */
+    private Location location;
+    
     /**
      * Optional. A new member was added to the group, information about them (this member may be bot itself)
      */
@@ -125,5 +133,54 @@ public class Message {
      * Optional. Informs that the group has been created
      */
     private Boolean group_chat_created;
+    
+    private Type type;
+    
+    /**
+     * Returns the {@link com.cadiducho.minegram.api.Message.Type} of this Message.
+     * @return The {@code Type} of this {@code Message}
+     */
+    public Type getType() {
+        if (type == null) 
+            determineType();
+        return type;
+    }
+
+    private void determineType() {
+        if (text != null) type = Type.TEXT;
+        else if (audio != null) type = Type.AUDIO;
+        else if (document != null) type = Type.DOCUMENT;
+        else if (photo != null) type = Type.PHOTO;
+        else if (sticker != null) type = Type.STICKER;
+        else if (video != null) type = Type.VIDEO;
+        else if (contact != null) type = Type.CONTACT;
+        else if (location != null) type = Type.LOCATION;
+        else if (new_chat_participant != null) type = Type.NEW_CHAT_PARTICIPANT;
+        else if (left_chat_participant != null) type = Type.LEFT_CHAT_PARTICIPANT;
+        else if (new_chat_photo != null) type = Type.NEW_CHAT_PHOTO;
+        else if (delete_chat_photo) type = Type.DELETE_CHAT_PHOTO;
+        else if (group_chat_created) type = Type.GROUP_CHAT_CREATED;
+        else type = Type.UNKNOWN;
+    }
+    
+    /**
+     * Defines the different types of Messages that can be received.
+     */
+    public enum Type {
+        TEXT,
+        DOCUMENT,
+        AUDIO,
+        PHOTO,
+        STICKER,
+        VIDEO,
+        CONTACT,
+        LOCATION,
+        NEW_CHAT_PARTICIPANT,
+        LEFT_CHAT_PARTICIPANT,
+        NEW_CHAT_PHOTO,
+        DELETE_CHAT_PHOTO,
+        GROUP_CHAT_CREATED,
+        UNKNOWN
+    }
 
 }

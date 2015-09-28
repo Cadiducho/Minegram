@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represents an audio file to be treated as music by the Telegram clients.
+ */
 @ToString
 @Getter @Setter
 public class Audio {

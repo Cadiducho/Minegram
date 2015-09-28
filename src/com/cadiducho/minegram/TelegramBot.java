@@ -388,7 +388,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
 
-        final String resultBody = handleRequest( Unirest.post(apiUrl + "sendLocation").fields(par));
+        final String resultBody = handleRequest(Unirest.post(apiUrl + "sendLocation").fields(par));
         try {
             return mapper.readValue(resultBody, Message.class);
         } catch (IOException e) {

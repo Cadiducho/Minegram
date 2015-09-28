@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represents a general file (as opposed to photos, voice messages and audio files).
+ */
 @ToString
 @Getter @Setter
 public class Document {

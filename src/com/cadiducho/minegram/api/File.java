@@ -11,6 +11,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represents a file ready to be downloaded. 
+ * The file can be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>. 
+ * It is guaranteed that the link will be valid for at least 1 hour. 
+ * When the link expires, a new one can be requested by calling getFile.
+ */
 @ToString
 @Getter @Setter
 public class File {

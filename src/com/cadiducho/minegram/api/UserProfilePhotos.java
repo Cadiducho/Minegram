@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represent a user's profile pictures.
+ */
 @ToString
 @Getter @Setter
 public class UserProfilePhotos {

@@ -11,6 +11,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This object represents a point on the map.
+ */
 @ToString
 @Getter @Setter
 public class Location {
