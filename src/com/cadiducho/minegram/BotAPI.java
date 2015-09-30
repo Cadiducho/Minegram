@@ -25,6 +25,20 @@ public interface BotAPI {
      */
     public Plugin getBukkitPlugin();
     
+    /**
+     * Starts updates threads
+     * @param listener Class with handlers
+     */
+    public void registerUpdatesListener(BotListener listener);
+    
+    /**
+     * Starts updates threads
+     * @param listener Class with handlers
+     * @param limit   Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to 100
+     * @param timeout Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling
+     */
+    public void registerUpdatesListener(BotListener listener, int limit, int timeout);
+    
     //---- Telegram Methods ----//
     
     /**

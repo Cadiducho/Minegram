@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.bukkit.plugin.Plugin;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 
 
@@ -27,13 +27,23 @@ public class TelegramBot implements BotAPI {
     private final Plugin bukkitPlugin;
     
     private final ObjectMapper mapper = new ObjectMapper();
-
+    
     public TelegramBot(String token, Plugin plugin){
         apiUrl = "https://api.telegram.org/bot" + token + "/";
         bukkitPlugin = plugin;
         MinegramPlugin.bots.put(this, bukkitPlugin);
     }
+    
+    @Override
+    public void registerUpdatesListener(BotListener listener) {
+        registerUpdatesListener(listener, 100, 1);
+    }
 
+    @Override
+    public void registerUpdatesListener(BotListener listener, int limit, int timeout) {
+        new BotThread(limit, timeout, this).addListener(listener);
+    }
+    
     @Override
     public User getMe() throws TelegramException {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getMe"));
@@ -458,11 +468,12 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("timeout", timeout));
 
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getUpdates").queryString(par));
+        System.out.println(resultBody);
         try {
             return mapper.readValue(resultBody,
                     mapper.getTypeFactory().constructCollectionType(List.class, Update.class));
         } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
+            throw new TelegramException("Could not deserialize response! (getUpdates)", e);
         }
     }
 
