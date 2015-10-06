@@ -9,6 +9,7 @@ package com.cadiducho.minegram;
 
 import com.cadiducho.minegram.api.*;
 import com.cadiducho.minegram.api.exception.TelegramException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
@@ -470,8 +471,7 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getUpdates").queryString(par));
         System.out.println(resultBody);
         try {
-            return mapper.readValue(resultBody,
-                    mapper.getTypeFactory().constructCollectionType(List.class, Update.class));
+            return mapper.readValue(resultBody, new TypeReference<List<Update>>(){});
         } catch (IOException e) {
             throw new TelegramException("Could not deserialize response! (getUpdates)", e);
         }

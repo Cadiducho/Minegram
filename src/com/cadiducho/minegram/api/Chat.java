@@ -7,13 +7,14 @@
 
 package com.cadiducho.minegram.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
 
 /**
@@ -22,6 +23,7 @@ import org.json.JSONObject;
  */
 @ToString
 @Getter @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Chat {
     
     private final ObjectMapper mapper = new ObjectMapper();

@@ -7,6 +7,7 @@
 
 package com.cadiducho.minegram.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,6 +17,7 @@ import lombok.ToString;
  */
 @ToString
 @Getter @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Audio {
 
     /**
