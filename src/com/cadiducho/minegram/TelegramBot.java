@@ -36,16 +36,6 @@ public class TelegramBot implements BotAPI {
     }
     
     @Override
-    public void registerUpdatesListener(BotListener listener) {
-        registerUpdatesListener(listener, 100, 1);
-    }
-
-    @Override
-    public void registerUpdatesListener(BotListener listener, int limit, int timeout) {
-        new BotThread(limit, timeout, this).addListener(listener);
-    }
-    
-    @Override
     public User getMe() throws TelegramException {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getMe"));
 

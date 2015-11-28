@@ -34,24 +34,58 @@ public class Chat {
     private Integer id;
     
     /**
-     * User‘s or bot’s first name
+     * Type of chat, can be either “private”, “group”, “supergroup” or “channel”
      */
-    private String first_name;
+    private String type;
     
     /**
-     * Optional. User‘s or bot’s last name
+     * Optional. Title, for channels and group chats
      */
-    private String last_name;
+    private String title;
     
     /**
-     * Optional. User‘s or bot’s username
+     * Optional. Username, for private chats and channels if available
      */
     private String username;
     
     /**
-     * Group name
+     * Optional. First name of the other party in a private chat
      */
-    private String title;
+    private String first_name;
+    
+    /**
+     * Optional. Last name of the other party in a private chat
+     */
+    private String last_name; 
+    
+    /**
+     * 
+     */
+    private ChatType chatType;
+    
+    public ChatType getChatType() {
+        if (chatType == null) 
+            determineChatType();
+        return chatType;
+    }
+    
+    private void determineChatType() {
+        switch (type) {
+            case "private": chatType = ChatType.PRIVATE;
+            case "group": chatType = ChatType.GROUP;
+            case "supergroup": chatType = ChatType.SUPERGROUP;
+            case "channel": chatType = ChatType.CHANNEL;
+            default: chatType = ChatType.UNKNOWN;
+        }
+    }
+    
+    public enum ChatType {
+        PRIVATE,
+        GROUP,
+        SUPERGROUP,
+        CHANNEL,
+        UNKNOWN
+    }
     
     /**
      * @return Whether this is a chat with a {@link User}

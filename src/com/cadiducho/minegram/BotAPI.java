@@ -25,20 +25,6 @@ public interface BotAPI {
      */
     public Plugin getBukkitPlugin();
     
-    /**
-     * Starts updates threads
-     * @param listener Class with handlers
-     */
-    public void registerUpdatesListener(BotListener listener);
-    
-    /**
-     * Starts updates threads
-     * @param listener Class with handlers
-     * @param limit   Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to 100
-     * @param timeout Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling
-     */
-    public void registerUpdatesListener(BotListener listener, int limit, int timeout);
-    
     //---- Telegram Methods ----//
     
     /**
@@ -50,7 +36,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send text messages. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param text Text of the message to be sent
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
@@ -59,7 +45,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send text messages. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param text Text of the message to be sent
      * @param parse_mode Send Markdown, if you want Telegram apps to show bold, italic and inline URLs in your bot's message. For the moment, only Telegram for Android supports this.
      *                  See https://core.telegram.org/bots/api#using-markdown
@@ -74,8 +60,8 @@ public interface BotAPI {
     
     /**
      * Use this method to forward messages of any kind. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
-     * @param from_chat_id Unique identifier for the chat where the original message was sent — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param from_chat_id Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
      * @param message_id Unique message identifier
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
@@ -85,7 +71,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param photo Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
@@ -94,7 +80,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param photo Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
@@ -103,7 +89,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param photo Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.
      * @param caption Photo caption (may also be used when resending photos by file_id).
      * @param reply_to_message_id If the message is a reply, ID of the original message
@@ -122,7 +108,7 @@ public interface BotAPI {
      * For backward compatibility, when the fields title and performer are both empty and the mime-type of the file to be sent is not audio/mpeg, 
      * the file will be sent as a playable voice message. For this to work, the audio must be in an .ogg file encoded with OPUS. 
      * This behavior will be phased out in the future. For sending voice messages, use the sendVoice method instead.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param audio Audio file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
@@ -137,7 +123,7 @@ public interface BotAPI {
      * For backward compatibility, when the fields title and performer are both empty and the mime-type of the file to be sent is not audio/mpeg, 
      * the file will be sent as a playable voice message. For this to work, the audio must be in an .ogg file encoded with OPUS. 
      * This behavior will be phased out in the future. For sending voice messages, use the sendVoice method instead.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param audio Audio file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
@@ -152,7 +138,7 @@ public interface BotAPI {
      * For backward compatibility, when the fields title and performer are both empty and the mime-type of the file to be sent is not audio/mpeg, 
      * the file will be sent as a playable voice message. For this to work, the audio must be in an .ogg file encoded with OPUS. 
      * This behavior will be phased out in the future. For sending voice messages, use the sendVoice method instead.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param audio Audio file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
      * @param duration Duration of the audio in seconds
      * @param performer Performer
@@ -168,7 +154,7 @@ public interface BotAPI {
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
      * Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param document File to send. You can either pass a file_id as String to resend a file that is already on the Telegram servers, 
      *                  or upload a new file using multipart/form-data.
      * @return {@link Message}
@@ -179,7 +165,7 @@ public interface BotAPI {
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
      * Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param document File to send. You can either pass a file_id as String to resend a file that is already on the Telegram servers, 
      *                  or upload a new file using multipart/form-data.
      * @return {@link Message}
@@ -190,7 +176,7 @@ public interface BotAPI {
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
      * Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param document File to send. You can either pass a file_id as String to resend a file that is already on the Telegram servers, 
      *                  or upload a new file using multipart/form-data.
      * @param reply_to_message_id If the message is a reply, ID of the original message
@@ -204,7 +190,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send .webp stickers. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param sticker Sticker to send. You can either pass a file_id as String to resend a sticker that is already on the Telegram servers, 
      *                  or upload a new sticker using multipart/form-data.
      * @return {@link Message}
@@ -214,7 +200,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send .webp stickers. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param sticker Sticker to send. You can either pass a file_id as String to resend a sticker that is already on the Telegram servers, 
      *                  or upload a new sticker using multipart/form-data.
      * @return {@link Message}
@@ -224,7 +210,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send .webp stickers. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param sticker Sticker to send. You can either pass a file_id as String to resend a sticker that is already on the Telegram servers, 
      *                  or upload a new sticker using multipart/form-data.
      * @param reply_to_message_id If the message is a reply, ID of the original message
@@ -240,7 +226,7 @@ public interface BotAPI {
      * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as {@link Document}). 
      * On success, the sent {@link Message} is returned. 
      * Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param video Video to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
      * @return 
@@ -252,7 +238,7 @@ public interface BotAPI {
      * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as {@link Document}). 
      * On success, the sent {@link Message} is returned. 
      * Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param video Video to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
      * @return 
@@ -263,7 +249,7 @@ public interface BotAPI {
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
      * Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param video Video file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
      * @param duration Duration of the audio in seconds
      * @param performer Performer
@@ -280,7 +266,7 @@ public interface BotAPI {
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
      * For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as {@link Audio} or {@link Document}). 
      * On success, the sent {@link Message} is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
      * @return 
@@ -292,7 +278,7 @@ public interface BotAPI {
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
      * For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as {@link Audio} or {@link Document}). 
      * On success, the sent {@link Message} is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
      * @return 
@@ -304,7 +290,7 @@ public interface BotAPI {
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
      * For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as {@link Audio} or {@link Document}). 
      * On success, the sent {@link Message} is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
      * @param duration Duration of the audio in seconds 
@@ -318,7 +304,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send point on the map. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param latitude Latitude of location
      * @param longitude Longitude of location
      * @return {@link Message}
@@ -328,7 +314,7 @@ public interface BotAPI {
     
     /**
      * Use this method to send point on the map. On success, the sent {@link Message} is returned.
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param latitude Latitude of location
      * @param longitude Longitude of location
      * @param reply_to_message_id If the message is a reply, ID of the original message
@@ -344,7 +330,7 @@ public interface BotAPI {
      * The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
      * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
      * Watch more in https://core.telegram.org/bots/api#sendchataction
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param action Type of action to broadcast. 
      *          Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, 
      *          record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, 
@@ -367,7 +353,7 @@ public interface BotAPI {
      * The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
      * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
      * Watch more in https://core.telegram.org/bots/api#sendchataction
-     * @param chat_id Unique identifier for the message recipient — User or GroupChat id
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param action Type of action to broadcast. 
      *          Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, 
      *          record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, 

@@ -136,6 +136,29 @@ public class Message {
      */
     private Boolean group_chat_created;
     
+    /**
+     * Optional. Informs that the supergroup has been created
+     */
+    private Boolean supergroup_chat_created;
+    
+    /**
+     * Optional. Informs that the channel has been created
+     */
+    private Boolean channel_chat_created;
+    
+    /**
+     * Optional. The chat has been migrated to a chat with specified identifier, not exceeding 1e13 by absolute value
+     */
+    private Integer migrate_to_chat_id;
+    
+    /**
+     * Optional. The chat has been migrated from a chat with specified identifier, not exceeding 1e13 by absolute value
+     */
+    private Integer migrate_from_chat_id;
+    
+    /**
+     * Message type
+     */
     private Type type;
     
     /**
