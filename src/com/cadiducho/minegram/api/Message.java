@@ -157,7 +157,8 @@ public class Message {
     private Integer migrate_from_chat_id;
     
     /**
-     * Message type
+     * Type of message, can be either text, audio, document, photo, sticker, video, contact, location, new_chat_participant
+     *      left_chat_participant, new_chat_photo, delete_chat_photo or group_chat_created
      */
     private Type type;
     

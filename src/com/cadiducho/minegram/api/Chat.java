@@ -59,7 +59,7 @@ public class Chat {
     private String last_name; 
     
     /**
-     * 
+     * Type of chat, can be either private, group, supergroup or channel
      */
     private ChatType chatType;
     
