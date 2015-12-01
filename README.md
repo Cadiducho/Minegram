@@ -23,7 +23,7 @@ If you want use Minegram as a Maven Dependency simply add repo and artifact:
 <dependency>
     <groupId>com.cadiducho</groupId>
     <artifactId>Minegram</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 </dependency>
 ```
 
