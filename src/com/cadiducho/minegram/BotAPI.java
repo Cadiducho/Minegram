@@ -30,7 +30,6 @@ public interface BotAPI {
     /**
      * A simple method for testing your bot's auth token. Requires no parameters. Returns basic information about the bot in form of a {@link User} object.
      * @return {@link User}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public User getMe() throws TelegramException;
     
@@ -39,7 +38,6 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param text Text of the message to be sent
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendMessage(Integer chat_id, String text) throws TelegramException;
     
@@ -54,7 +52,6 @@ public interface BotAPI {
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendMessage(Integer chat_id, String text, String parse_mode, Boolean disable_web_page_preview, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
@@ -64,7 +61,6 @@ public interface BotAPI {
      * @param from_chat_id Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
      * @param message_id Unique message identifier
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     
     public Message forwardMessage(Integer chat_id, Integer from_chat_id, Integer message_id) throws TelegramException;
@@ -74,7 +70,6 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param photo Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendPhoto(Integer chat_id, String photo) throws TelegramException;
     
@@ -83,7 +78,6 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param photo Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendPhoto(Integer chat_id, File photo) throws TelegramException;
     
@@ -96,7 +90,6 @@ public interface BotAPI {
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendPhoto(Integer chat_id, Object photo, String caption, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
@@ -111,7 +104,6 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param audio Audio file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendAudio(Integer chat_id, String audio) throws TelegramException;
     
@@ -126,7 +118,6 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param audio Audio file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendAudio(Integer chat_id, File audio) throws TelegramException;
     
@@ -147,7 +138,6 @@ public interface BotAPI {
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendAudio(Integer chat_id, Object audio, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
@@ -158,7 +148,6 @@ public interface BotAPI {
      * @param document File to send. You can either pass a file_id as String to resend a file that is already on the Telegram servers, 
      *                  or upload a new file using multipart/form-data.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendDocument(Integer chat_id, String document) throws TelegramException;
     
@@ -169,7 +158,6 @@ public interface BotAPI {
      * @param document File to send. You can either pass a file_id as String to resend a file that is already on the Telegram servers, 
      *                  or upload a new file using multipart/form-data.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendDocument(Integer chat_id, File document) throws TelegramException;
     
@@ -183,7 +171,6 @@ public interface BotAPI {
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendDocument(Integer chat_id, Object document, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
@@ -194,7 +181,6 @@ public interface BotAPI {
      * @param sticker Sticker to send. You can either pass a file_id as String to resend a sticker that is already on the Telegram servers, 
      *                  or upload a new sticker using multipart/form-data.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendSticker(Integer chat_id, String sticker) throws TelegramException;
     
@@ -204,7 +190,6 @@ public interface BotAPI {
      * @param sticker Sticker to send. You can either pass a file_id as String to resend a sticker that is already on the Telegram servers, 
      *                  or upload a new sticker using multipart/form-data.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendSticker(Integer chat_id, File sticker) throws TelegramException;
     
@@ -217,7 +202,6 @@ public interface BotAPI {
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendSticker(Integer chat_id, Object sticker, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
@@ -229,8 +213,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param video Video to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @return 
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     * @return
      */
     public Message sendVideo(Integer chat_id, String video) throws TelegramException;
     
@@ -241,8 +224,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param video Video to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @return 
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     * @return
      */
     public Message sendVideo(Integer chat_id, File video) throws TelegramException;
     
@@ -258,7 +240,6 @@ public interface BotAPI {
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendVideo(Integer chat_id, Object video, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
@@ -269,8 +250,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @return 
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     * @return
      */
     public Message sendVoice(Integer chat_id, String voice) throws TelegramException;
     
@@ -281,8 +261,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @return 
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     * @return
      */
     public Message sendVoice(Integer chat_id, File voice) throws TelegramException;
     
@@ -298,7 +277,6 @@ public interface BotAPI {
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendVoice(Integer chat_id, Object voice, Integer duration, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
@@ -308,7 +286,6 @@ public interface BotAPI {
      * @param latitude Latitude of location
      * @param longitude Longitude of location
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendLocation(Integer chat_id, Float latitude, Float longitude) throws TelegramException;
     
@@ -321,7 +298,6 @@ public interface BotAPI {
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendLocation(Integer chat_id, Float latitude, Float longitude, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
@@ -336,7 +312,6 @@ public interface BotAPI {
      *          record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, 
      *          find_location for location data.
      * @return Boolean
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean sendChatAction(Integer chat_id, String action) throws TelegramException;
     
@@ -359,7 +334,6 @@ public interface BotAPI {
      *          record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, 
      *          find_location for location data.
      * @return Boolean
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean sendChatAction(Integer chat_id, ChatAction action) throws TelegramException;
     
@@ -368,7 +342,6 @@ public interface BotAPI {
      *
      * @param user_id Unique identifier of the target user
      * @return {@link UserProfilePhotos}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public UserProfilePhotos getUserProfilePhotos(Integer user_id) throws TelegramException;
 
@@ -380,18 +353,17 @@ public interface BotAPI {
      * @param offset Sequential number of the first photo to be returned. By default, all photos are returned.
      * @param limit Limits the number of photos to be retrieved. Values between 1—100 are accepted. Defaults to 100.
      * @return {@link UserProfilePhotos}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public UserProfilePhotos getUserProfilePhotos(Integer user_id, Integer offset, Integer limit) throws TelegramException;
     
     /**
-     * Use this method to get basic info about a file and prepare it for downloading. 
-     * For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. 
-     * The file can then be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response. 
-     * It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.
+     * Use this method to get basic info about a file and prepare it for downloading.
+     * For the moment, bots can download files of up to 20MB in size. On success, a {@link de.raysha.lib.telegram.bot.api.model.File} object is returned.
+     * The file can then be downloaded via the link https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;,
+     * where &lt;file_path&gt; is taken from the response. It is guaranteed that the link will be valid for at least 1 hour.
+     * When the link expires, a new one can be requested by calling getFile again.
      * @param file_id File identifier to get info about
      * @return {@link File}
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public File getFile(String file_id) throws TelegramException;
     
@@ -405,7 +377,6 @@ public interface BotAPI {
      * @param limit Limits the number of updates to be retrieved. Values between 1—100 are accepted. Defaults to 100
      * @param timeout Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling
      * @return
-     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException;
     
@@ -414,13 +385,20 @@ public interface BotAPI {
      * Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update. 
      * In case of an unsuccessful request, we will give up after a reasonable amount of attempts.
 
-     * If you'd like to make sure that the Webhook request comes from Telegram, we recommend using a secret path in the URL, e.g. https://www.example.com/<token>. 
-     * Since nobody else knows your bot‘s token, you can be pretty sure it’s us.
-     * Watch more in https://core.telegram.org/bots/api#setwebhook
-     * @param url HTTPS url to send updates to. Use an empty string to remove webhook integration
-     * @param certificate Upload your public key certificate so that the root certificate in use can be checked
+     * If you'd like to make sure that the Webhook request comes from Telegram, we recommend using a secret path in the URL,
+     * e.g. https://www.example.com/&lt;token&gt;. Since nobody else knows your bot‘s token, you can be pretty sure it’s us.
+     * <br><br>
+     * <b>Notes</b>
+     * <ul>
+     * <li>You will not be able to receive updates using getUpdates for as long as an outgoing webhook is set up.ǘ
+     * <li>We currently do not support self-signed certificates.</li>
+     * <li>Ports currently supported for Webhooks: 443, 80, 88, 8443.</li>
+     * </ul>
+     * 
+     * @param url         HTTPS url to send updates to. Use an empty string to remove webhook integration
+     * @param certificate Upload your public key certificate so that the root certificate in use can be checked.
+     *                    See our <a href="https://core.telegram.org/bots/self-signed">self-signed guide</a> for details.
      * @return
-     * @throws TelegramException 
      */
     public Boolean setWebhook(String url, File certificate) throws TelegramException;
 }
