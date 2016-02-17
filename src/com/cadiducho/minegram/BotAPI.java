@@ -385,12 +385,14 @@ public interface BotAPI {
     public UserProfilePhotos getUserProfilePhotos(Integer user_id, Integer offset, Integer limit) throws TelegramException;
     
     /**
-     * Use this method to get basic info about a file and prepare it for downloading. 
-     * For the moment, bots can download files of up to 20MB in size. On success, a File object is returned. 
-     * The file can then be downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response. 
-     * It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling getFile again.
-     * @param file_id File identifier to get info about
-     * @return {@link File}
+     * Use this method to get basic info about a file and prepare it for downloading.
+     * For the moment, bots can download files of up to 20MB in size. On success, a {@link de.raysha.lib.telegram.bot.api.model.File} object is returned.
+     * The file can then be downloaded via the link https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;,
+     * where &lt;file_path&gt; is taken from the response. It is guaranteed that the link will be valid for at least 1 hour.
+     * When the link expires, a new one can be requested by calling getFile again.
+     *
+     * @param file_id
+     * @return
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public File getFile(String file_id) throws TelegramException;
@@ -410,17 +412,25 @@ public interface BotAPI {
     public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException;
     
     /**
-     * Use this method to specify a url and receive incoming updates via an outgoing webhook. 
-     * Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update. 
+     * Use this method to specify a url and receive incoming updates via an outgoing webhook. Whenever there is an
+     * update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update.
      * In case of an unsuccessful request, we will give up after a reasonable amount of attempts.
-
-     * If you'd like to make sure that the Webhook request comes from Telegram, we recommend using a secret path in the URL, e.g. https://www.example.com/<token>. 
-     * Since nobody else knows your bot‘s token, you can be pretty sure it’s us.
-     * Watch more in https://core.telegram.org/bots/api#setwebhook
-     * @param url HTTPS url to send updates to. Use an empty string to remove webhook integration
-     * @param certificate Upload your public key certificate so that the root certificate in use can be checked
+     * 
+     * If you'd like to make sure that the Webhook request comes from Telegram, we recommend using a secret path in the URL,
+     * e.g. https://www.example.com/&lt;token&gt;. Since nobody else knows your bot‘s token, you can be pretty sure it’s us.
+     * 
+     * <b>Notes</b>
+     * <ul>
+     * <li>You will not be able to receive updates using getUpdates for as long as an outgoing webhook is set up.ǘ
+     * <li>We currently do not support self-signed certificates.</li>
+     * <li>Ports currently supported for Webhooks: 443, 80, 88, 8443.</li>
+     * </ul>
+     *
+     * @param url         HTTPS url to send updates to. Use an empty string to remove webhook integration
+     * @param certificate Upload your public key certificate so that the root certificate in use can be checked.
+     *                    See our <a href="https://core.telegram.org/bots/self-signed">self-signed guide</a> for details.
      * @return
-     * @throws TelegramException 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean setWebhook(String url, File certificate) throws TelegramException;
 }
