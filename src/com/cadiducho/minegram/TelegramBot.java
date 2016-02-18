@@ -458,9 +458,9 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("timeout", timeout));
 
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getUpdates").queryString(par));
-        System.out.println(resultBody);
         try {
-            return mapper.readValue(resultBody, new TypeReference<List<Update>>(){});
+            return mapper.readValue(resultBody,
+                    mapper.getTypeFactory().constructCollectionType(List.class, Update.class));
         } catch (IOException e) {
             throw new TelegramException("Could not deserialize response! (getUpdates)", e);
         }
