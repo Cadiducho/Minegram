@@ -433,4 +433,33 @@ public interface BotAPI {
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean setWebhook(String url, File certificate) throws TelegramException;
+    
+    /**
+     * Use this method to send answers to an inline query. On success, True is returned.
+     * No more than <b>50</b> results per query are allowed.
+     *
+     * @param inlineQueryId Unique identifier for the answered query
+     * @param results       A JSON-serialized array of results for the inline query
+     * @return
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results) throws TelegramException;
+
+    /**
+     * Use this method to send answers to an inline query. On success, True is returned.
+     * No more than <b>50</b> results per query are allowed.
+     *
+     * @param inlineQueryId Unique identifier for the answered query
+     * @param results       A JSON-serialized array of results for the inline query
+     * @param cacheTime     The maximum amount of time in seconds that the result of the inline query may be cached on
+     *                      the server. Defaults to 300.
+     * @param isPersonal    Pass <i>True</i>, if results may be cached on the server side only for the user that sent
+     *                      the query. By default, results may be returned to any user who sends the same query
+     * @param nextOffset    Pass the offset that a client should send in the next query with the same text to receive
+     *                      more results. Pass an empty string if there are no more results or if you don‘t support
+     *                      pagination. Offset length can’t exceed 64 bytes.
+     * @return
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results, Integer cacheTime, Boolean isPersonal, String nextOffset) throws TelegramException;
 }

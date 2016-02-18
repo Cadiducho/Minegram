@@ -32,5 +32,15 @@ public class Update {
      * Optional. New incoming message of any kind — text, photo, sticker, etc.
      */
     private Message message;
-
+    
+    /**
+     * Optional. New incoming <a href="https://core.telegram.org/bots/api#inline-mode" >inline</a> query
+     */
+    private InlineQuery inline_query;
+    
+    /**
+     * 	Optional. The result of an New incoming <a href="https://core.telegram.org/bots/api#inline-mode" >inline</a> query query that was chosen by a user and sent to their chat partner.
+     */
+    private ChosenInlineResult chosen_inline_result;
+    
 }

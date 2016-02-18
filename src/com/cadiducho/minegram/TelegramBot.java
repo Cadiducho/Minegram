@@ -411,8 +411,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("action", action));
         
         final String resultBody = handleRequest(Unirest.post(apiUrl + "sendChatAction").queryString(par));
-        boolean get = ("True".equalsIgnoreCase(resultBody));
-        return get;
+        return "True".equalsIgnoreCase(resultBody);
     }
 
     @Override
@@ -475,8 +474,33 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("certificate", certificate));
 
         final String resultBody = handleRequest(Unirest.get(apiUrl + "setWebhook").queryString(par));
-        boolean get = ("True".equalsIgnoreCase(resultBody));
-        return get;
+        return "True".equalsIgnoreCase(resultBody);
+    }
+    
+    @Override
+    public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results) throws TelegramException {
+        return answerInlineQuery(inlineQueryId, results, null, null, null);
+    }
+
+    @Override
+    public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results, Integer cacheTime, Boolean isPersonal, String nextOffset) throws TelegramException {
+
+        final Map<String, Object> par = new HashMap<>();
+        par.putAll(safe("inline_query_id", inlineQueryId));
+
+        try {
+            par.put("results", mapper.writeValueAsString(results));
+        } catch (IOException e) {
+            throw new TelegramException("Error occurs while serializing the list of results!", e);
+        }
+
+        par.putAll(safe("cache_time", cacheTime));
+        par.putAll(safe("is_personal", isPersonal));
+        par.putAll(safe("next_offset", nextOffset));
+
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "answerInlineQuery").queryString(par));
+
+        return "True".equalsIgnoreCase(resultBody);
     }
     
 }
