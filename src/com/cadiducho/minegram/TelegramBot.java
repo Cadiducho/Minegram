@@ -9,7 +9,6 @@ package com.cadiducho.minegram;
 
 import com.cadiducho.minegram.api.*;
 import com.cadiducho.minegram.api.exception.TelegramException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
@@ -18,7 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.bukkit.plugin.Plugin;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import org.json.JSONObject;
 
 
@@ -27,7 +29,7 @@ public class TelegramBot implements BotAPI {
     private final String apiUrl;
     private final Plugin bukkitPlugin;
     
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final Gson gson = new Gson();
     
     public TelegramBot(String token, Plugin plugin){
         apiUrl = "https://api.telegram.org/bot" + token + "/";
@@ -39,11 +41,7 @@ public class TelegramBot implements BotAPI {
     public User getMe() throws TelegramException {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getMe"));
 
-        try {
-            return mapper.readValue(resultBody, User.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, User.class);
     }
     
     @Override
@@ -87,12 +85,8 @@ public class TelegramBot implements BotAPI {
         
         //Check markup style if exists
         if(obj != null && str.equals("reply_markup")) {
-            try {
-                parameters.put("reply_markup", mapper.writeValueAsString(obj));
-                return parameters;
-            } catch (IOException e) {
-                throw new TelegramException("Could not serialize reply markup!", e);
-            }
+            parameters.put("reply_markup", gson.toJson(obj));
+            return parameters;
         }
         //Return normal values (check optionals -> null)
         if (obj != null) parameters.put(str, obj);
@@ -119,11 +113,7 @@ public class TelegramBot implements BotAPI {
 
         final String resultBody = handleRequest(Unirest.post(apiUrl + "sendMessage").fields(par));
 
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     @Override
@@ -136,11 +126,7 @@ public class TelegramBot implements BotAPI {
         
         final String resultBody = handleRequest(Unirest.get(apiUrl + "forwardMessage").queryString(par));
 
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     @Override
@@ -174,11 +160,7 @@ public class TelegramBot implements BotAPI {
             throw new IllegalArgumentException("The photo must be a string or a file!");
         }
 
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     @Override
@@ -214,11 +196,7 @@ public class TelegramBot implements BotAPI {
             throw new IllegalArgumentException("The audio must be a string or a file!");
         }
 
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     @Override
@@ -251,11 +229,7 @@ public class TelegramBot implements BotAPI {
             throw new IllegalArgumentException("The document must be a string or a file!");
         }
 
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     @Override
@@ -288,11 +262,7 @@ public class TelegramBot implements BotAPI {
             throw new IllegalArgumentException("The sticker must be a string or a file!");
         }
 
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     @Override
@@ -328,11 +298,7 @@ public class TelegramBot implements BotAPI {
             throw new IllegalArgumentException("The video must be a string or a file!");
         }
 
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     @Override
@@ -366,11 +332,7 @@ public class TelegramBot implements BotAPI {
             throw new IllegalArgumentException("The voice must be a string or a file!");
         }
 
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     @Override
@@ -390,11 +352,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("reply_markup", reply_markup));
 
         final String resultBody = handleRequest(Unirest.post(apiUrl + "sendLocation").fields(par));
-        try {
-            return mapper.readValue(resultBody, Message.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, Message.class);
     }
 
     
@@ -428,11 +386,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("limit", limit));
         
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getUserProfilePhotos").queryString(par));
-        try {
-            return mapper.readValue(resultBody, UserProfilePhotos.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, UserProfilePhotos.class);
     }
 
     @Override
@@ -442,11 +396,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("file_id", file_id));
         
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getFile").queryString(par));
-        try {
-            return mapper.readValue(resultBody, File.class);
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response!", e);
-        }
+        return gson.fromJson(resultBody, File.class);
     }
 
     @Override
@@ -458,12 +408,8 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("timeout", timeout));
 
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getUpdates").queryString(par));
-        try {
-            return mapper.readValue(resultBody,
-                    mapper.getTypeFactory().constructCollectionType(List.class, Update.class));
-        } catch (IOException e) {
-            throw new TelegramException("Could not deserialize response! (getUpdates)", e);
-        }
+        Type listType = new TypeToken<ArrayList<Update>>() {}.getType();
+        return gson.fromJson(resultBody, listType);
     }
 
     @Override
@@ -488,11 +434,7 @@ public class TelegramBot implements BotAPI {
         final Map<String, Object> par = new HashMap<>();
         par.putAll(safe("inline_query_id", inlineQueryId));
 
-        try {
-            par.put("results", mapper.writeValueAsString(results));
-        } catch (IOException e) {
-            throw new TelegramException("Error occurs while serializing the list of results!", e);
-        }
+        par.put("results", gson.toJson(results));
 
         par.putAll(safe("cache_time", cacheTime));
         par.putAll(safe("is_personal", isPersonal));

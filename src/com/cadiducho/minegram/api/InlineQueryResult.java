@@ -7,7 +7,6 @@
 
 package com.cadiducho.minegram.api;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +25,6 @@ import lombok.ToString;
  */
 @ToString
 @Getter @Setter
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class InlineQueryResult {
     
     /**

@@ -7,9 +7,7 @@
 
 package com.cadiducho.minegram.api;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
+import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
@@ -23,10 +21,7 @@ import org.json.JSONObject;
  */
 @ToString
 @Getter @Setter
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Chat {
-    
-    private final ObjectMapper mapper = new ObjectMapper();
     
     /**
      * Unique identifier for this user or bot
@@ -107,9 +102,8 @@ public class Chat {
      * by calling {@link Chat#isUser()}.
      *
      * @return This chat as a {@link User} object
-     * @throws java.io.IOException
      */
-    public User asUser() throws IOException {
+    public User asUser() {
         final Map<String, Object> par = new HashMap<>();
         par.put("id", id);
         par.put("first_name", first_name);
@@ -117,23 +111,6 @@ public class Chat {
         par.put("username", username);
         
         JSONObject obj = new JSONObject(par);
-        return mapper.readValue(obj.toString(), User.class);
-    }
-    
-    /**
-     * Returns this chat as a {@link GroupChat}.
-     * Before invoking this method, check whether this chat is actually a group chat
-     * by calling {@link Chat#isGroupChat()}.
-     *
-     * @return This chat as a {@link GroupChat} object
-     * @throws java.io.IOException
-     */
-    public GroupChat asGroupChat() throws IOException {
-        final Map<String, Object> par = new HashMap<>();
-        par.put("id", id);
-        par.put("title", title);
-        
-        JSONObject obj = new JSONObject(par);
-        return mapper.readValue(obj.toString(), GroupChat.class);
+        return new Gson().fromJson(obj.toString(), User.class);
     }
 }
