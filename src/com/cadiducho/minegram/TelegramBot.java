@@ -9,6 +9,7 @@ package com.cadiducho.minegram;
 
 import com.cadiducho.minegram.api.*;
 import com.cadiducho.minegram.api.exception.TelegramException;
+import com.cadiducho.minegram.api.handlers.UpdatesPoller;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
@@ -34,6 +35,7 @@ public class TelegramBot implements BotAPI {
     public TelegramBot(String token, Plugin plugin){
         apiUrl = "https://api.telegram.org/bot" + token + "/";
         bukkitPlugin = plugin;
+        UpdatesPoller updatesPoller = new UpdatesPoller(this);
         MinegramPlugin.bots.put(this, bukkitPlugin);
     }
     
@@ -444,5 +446,4 @@ public class TelegramBot implements BotAPI {
 
         return "True".equalsIgnoreCase(resultBody);
     }
-    
 }

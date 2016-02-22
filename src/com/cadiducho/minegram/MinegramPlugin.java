@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Cadiducho.
+ * Copyright 2016 Cadiducho.
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
@@ -28,12 +28,11 @@ public class MinegramPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         Validate.notNull(instance, "Plugin cannot be null!");
-        this.getLogger().log(Level.INFO, "Enabling Minegram {0} by Cadiducho", getDescription().getVersion());
+        getLogger().log(Level.INFO, "Enabling Minegram {0} by Cadiducho", getDescription().getVersion());
         
         new BukkitRunnable() {    
             @Override
             public void run() {
-                MinegramPlugin.instance.getLogger().log(Level.INFO, "Loaded {0} bots.", bots.size());
                 if (!bots.isEmpty()) {
                     bots.forEach((bot, pluginLoader) -> { 
                         try {
@@ -43,6 +42,7 @@ public class MinegramPlugin extends JavaPlugin {
                         }
                     });
                 }
+                MinegramPlugin.instance.getLogger().log(Level.INFO, "Loaded {0} bots.", bots.size());
             }
         }.runTaskLater(this, 1);
         
