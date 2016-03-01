@@ -13,7 +13,6 @@ import com.cadiducho.minegram.api.handlers.UpdatesPoller;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,33 +21,41 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
 import org.json.JSONObject;
 
 
 public class TelegramBot implements BotAPI {
     
     private final String apiUrl;
-    private final Plugin bukkitPlugin;
+    @Getter private final Plugin bukkitPlugin;
+    @Getter @Setter private Boolean updatesPolling;
     
     private final Gson gson = new Gson();
     
     public TelegramBot(String token, Plugin plugin){
         apiUrl = "https://api.telegram.org/bot" + token + "/";
         bukkitPlugin = plugin;
+        updatesPolling = true;
         UpdatesPoller updatesPoller = new UpdatesPoller(this);
         MinegramPlugin.bots.put(this, bukkitPlugin);
     }
+    
+    public TelegramBot(String token, boolean pollthread, Plugin plugin){
+        apiUrl = "https://api.telegram.org/bot" + token + "/";
+        bukkitPlugin = plugin;
+        updatesPolling = pollthread;
+        UpdatesPoller updatesPoller = new UpdatesPoller(this);
+        MinegramPlugin.bots.put(this, bukkitPlugin);
+    }
+    
     
     @Override
     public User getMe() throws TelegramException {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getMe"));
 
         return gson.fromJson(resultBody, User.class);
-    }
-    
-    @Override
-    public Plugin getBukkitPlugin() {
-        return bukkitPlugin;
     }
     
     //handleRequest and checkReply by Rainu

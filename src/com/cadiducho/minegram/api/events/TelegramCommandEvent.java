@@ -13,10 +13,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 @Getter @Setter
-public class UpdateRecievedEvent extends Event {
+public class TelegramCommandEvent extends Event {
     private Update update;
  
-    public UpdateRecievedEvent(Update update) {
+    public TelegramCommandEvent(Update update) {
         this.update = update;
     }
 

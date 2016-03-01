@@ -8,6 +8,7 @@
 package com.cadiducho.minegram;
 
 import com.cadiducho.minegram.api.exception.TelegramException;
+import java.io.File;
 import java.util.HashMap;
 import java.util.logging.Level;
 import org.apache.commons.lang.Validate;
@@ -25,10 +26,21 @@ public class MinegramPlugin extends JavaPlugin {
     public static MinegramPlugin instance;
     
     @Override
+    public void onLoad() {
+        log("Minegram loaded. Waiting for bots.");
+    }
+    
+    @Override
     public void onEnable() {
         instance = this;
         Validate.notNull(instance, "Plugin cannot be null!");
-        getLogger().log(Level.INFO, "Enabling Minegram {0} by Cadiducho", getDescription().getVersion());
+        log("Enabling Minegram "+getDescription().getVersion()+" by Cadiducho");
+        
+        File config = new File(getDataFolder()+File.separator+"config.yml");
+        if (!config.exists()) {
+            getConfig().options().copyDefaults(true);
+            saveConfig();
+        }
         
         new BukkitRunnable() {    
             @Override
@@ -36,13 +48,14 @@ public class MinegramPlugin extends JavaPlugin {
                 if (!bots.isEmpty()) {
                     bots.forEach((bot, pluginLoader) -> { 
                         try {
-                            getLogger().log(Level.INFO, "@{0} loaded by {1}", new Object[]{bot.getMe().getUsername(), pluginLoader.getName()});
+                            log("@"+bot.getMe().getUsername()+" loaded by "+pluginLoader.getName());
                         } catch (TelegramException ex) {
-                            getLogger().log(Level.INFO, "Could not retrieve any info from {0}'s bot: {1}", new Object[]{pluginLoader.getName(), ex.getMessage()});
+                            log("Could not retrieve any info from "+pluginLoader.getName()+"'s bot:");
+                            log(ex.getMessage());
                         }
                     });
                 }
-                MinegramPlugin.instance.getLogger().log(Level.INFO, "Loaded {0} bots.", bots.size());
+                log("Loaded "+bots.size()+" bots.");
             }
         }.runTaskLater(this, 1);
         
@@ -50,11 +63,11 @@ public class MinegramPlugin extends JavaPlugin {
     
     @Override
     public void onDisable() {
-        this.getLogger().log(Level.INFO, "Unoaded {0} bots.", bots.size());
+        log("Unloaded "+bots.size()+" bots.");
         if (!bots.isEmpty()) {
             String botPlugins = "";
             botPlugins = bots.entrySet().stream().map((entry) -> entry.getValue().getName()+", ").reduce(botPlugins, String::concat);
-            this.getLogger().log(Level.WARNING, "Bots from {0} will not work anymore.", botPlugins);
+            log("Bots from "+botPlugins+" will not work anymore.");
         }
     }
     
@@ -81,4 +94,17 @@ public class MinegramPlugin extends JavaPlugin {
         return true;
     }
     
+    public boolean isDebug() {
+        return this.getConfig().getBoolean("debug");
+    }
+    
+    public void debugLog(String s) {
+        if (isDebug()){
+            log("[Debug] "+s);
+        }
+    }
+    
+    public void log(String s) {
+        getLogger().log(Level.INFO, s);
+    }    
 }

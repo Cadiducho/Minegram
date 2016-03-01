@@ -25,6 +25,12 @@ public interface BotAPI {
      */
     public Plugin getBukkitPlugin();
     
+    /**
+     * Return true if updates thread is enabled, or false if not.
+     * @return true or false
+     */
+    public Boolean getUpdatesPolling();
+    
     //---- Telegram Methods ----//
     
     /**

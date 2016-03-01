@@ -8,8 +8,9 @@ package com.cadiducho.minegram.api.handlers;
 
 import com.cadiducho.minegram.MinegramPlugin;
 import com.cadiducho.minegram.TelegramBot;
+import com.cadiducho.minegram.api.Message;
 import com.cadiducho.minegram.api.Update;
-import com.cadiducho.minegram.api.events.UpdateRecievedEvent;
+import com.cadiducho.minegram.api.events.*;
 import com.cadiducho.minegram.api.exception.TelegramException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -25,14 +26,14 @@ public class UpdatesPoller {
     
     public UpdatesPoller(TelegramBot instance) {
         plugin = MinegramPlugin.instance;
-        plugin.getLogger().log(Level.INFO, "Updates poller creado");
+        plugin.debugLog("Updates Poller created");
         executorService = Executors.newCachedThreadPool();     
         readerThread = new ReaderThread();
         readerThread.start();
-        bot = instance; 
+        plugin.debugLog("Reader Thread started");
+        bot = instance;
     }
     
-    private boolean running = true;
     private int lastUpdateId = 0;
 
     private class ReaderThread extends Thread {
@@ -40,31 +41,39 @@ public class UpdatesPoller {
         @Override
         public void run() {
             setPriority(Thread.MIN_PRIORITY);
-            while (running) {
+            while (bot.getUpdatesPolling()) {
                 try {
                     poll();
                 } catch (TelegramException e) {
                     plugin.getLogger().log(Level.SEVERE, "An exception occurred while polling Telegram.", e);
-                    running = false;
+                    bot.setUpdatesPolling(false);
                 }
             }
         }
 
-        public void poll() throws TelegramException {
+        private void poll() throws TelegramException {
             List<Update> updates = bot.getUpdates(lastUpdateId + 1, 0, 3);
-            plugin.getLogger().log(Level.INFO, "Polling...");
             if (updates.size() > 0) {
                 updates.stream().forEach((update) -> {
                     if (update.getUpdate_id() > lastUpdateId) {
-                        plugin.getLogger().log(Level.INFO, "Nueva update...");
+                        plugin.debugLog("New update found");
                         lastUpdateId = update.getUpdate_id();
                         executorService.submit(() -> {
-                            plugin.getLogger().log(Level.INFO, "Llamando evento...");
-                            plugin.getServer().getPluginManager().callEvent(new UpdateRecievedEvent(update));
+                            shortUpdates(update);
                         });
                     }
                 });
             }    
+        }
+        
+        private void shortUpdates(Update update) {
+            if (update.getMessage().getType().equals(Message.Type.TEXT) && update.getMessage().getText().startsWith("/")) {
+                plugin.debugLog("Calling commands event");
+                plugin.getServer().getPluginManager().callEvent(new TelegramCommandEvent(update)); //It's a command
+                return;
+            }
+            plugin.debugLog("Calling default event");
+            plugin.getServer().getPluginManager().callEvent(new TelegramUpdateEvent(update)); //default response event
         }
     }
 }
