@@ -29,6 +29,7 @@ import com.cadiducho.minegram.api.exception.TelegramException;
 
 static BotAPI telegramBot;
 
+@Override
 public void onEnable() {
 	telegramBot = new TelegramBot("to:kken", this); //this, or your Bukkit Plugin instance
 	

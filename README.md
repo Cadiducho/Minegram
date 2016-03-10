@@ -23,7 +23,7 @@ If you want use Minegram as a Maven Dependency simply add repo and artifact:
 <dependency>
     <groupId>com.cadiducho</groupId>
     <artifactId>Minegram</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
 </dependency>
 ```
 
@@ -34,4 +34,4 @@ This project is released under the [MIT-License](https://github.com/Cadiducho/Mi
 > This project is is highly inspired on [Irazasyed's Telegram Bot API - PHP SDK](https://github.com/irazasyed/telegram-bot-sdk) 
 > and [Rainu's telegram-bot-api](https://github.com/rainu/telegram-bot-api), but this one is written from scratch.
 
-© 2015 [Cadiducho](https://twitter.com/Cadiducho)
+© 2016 [Cadiducho](https://twitter.com/Cadiducho)
