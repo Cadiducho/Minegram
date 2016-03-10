@@ -15,7 +15,7 @@ import org.bukkit.event.HandlerList;
 @Getter @Setter
 public class TelegramCommandEvent extends Event {
     private Update update;
- 
+    
     public TelegramCommandEvent(Update update) {
         this.update = update;
     }

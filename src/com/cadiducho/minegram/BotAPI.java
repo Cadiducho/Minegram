@@ -31,6 +31,12 @@ public interface BotAPI {
      */
     public Boolean getUpdatesPolling();
     
+    /**
+     * Enable or disable updates threa
+     * @param bool True to enable or false to disable
+     */
+    public void setUpdatesPolling(Boolean bool);
+    
     //---- Telegram Methods ----//
     
     /**

@@ -9,8 +9,11 @@ package com.cadiducho.minegram;
 
 import com.cadiducho.minegram.api.exception.TelegramException;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -65,6 +68,7 @@ public class MinegramPlugin extends JavaPlugin {
     public void onDisable() {
         log("Unloaded "+bots.size()+" bots.");
         if (!bots.isEmpty()) {
+            bots.keySet().stream().forEach(bot -> bot.setUpdatesPolling(false));
             String botPlugins = "";
             botPlugins = bots.entrySet().stream().map((entry) -> entry.getValue().getName()+", ").reduce(botPlugins, String::concat);
             log("Bots from "+botPlugins+" will not work anymore.");
@@ -106,5 +110,36 @@ public class MinegramPlugin extends JavaPlugin {
     
     public void log(String s) {
         getLogger().log(Level.INFO, s);
-    }    
+    }
+    
+    public BotAPI getBot(String username) throws TelegramException {
+        if (!bots.isEmpty()) {
+            for (BotAPI bot : bots.keySet()) {
+                if (bot.getMe().getUsername().equals(username))
+                    return bot;
+            }
+        }
+        return null;
+    }
+    
+    public BotAPI getBot(Integer id) throws TelegramException {
+        if (!bots.isEmpty()) {
+            for (BotAPI bot : bots.keySet()) {
+                if (bot.getMe().getId().equals(id))
+                    return bot;
+            }
+        }
+        return null;
+    }
+    
+    public List<BotAPI> getBotList(Plugin pluginLoader) throws TelegramException {
+        ArrayList<BotAPI> botsFounded = new ArrayList<>();
+        if (!bots.isEmpty()) {
+            for (BotAPI bot : bots.keySet()) {
+                if (bot.getBukkitPlugin().equals(pluginLoader)) 
+                    botsFounded.add(bot);
+            }
+        }
+        return botsFounded;
+    }
 }
