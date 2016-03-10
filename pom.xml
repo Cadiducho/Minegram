@@ -59,6 +59,7 @@
                                 <excludes>
                                     <exclude>commons-codec:commons-codec</exclude>
                                     <exclude>javax.annotation:jsr250-api</exclude>
+                                    <exclude>com.google.code.gson:gson</exclude>
                                 </excludes>
                             </artifactSet>
                         </configuration>
