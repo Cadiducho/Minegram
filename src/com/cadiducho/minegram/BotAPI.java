@@ -62,13 +62,14 @@ public interface BotAPI {
      * @param parse_mode Send Markdown, if you want Telegram apps to show bold, italic and inline URLs in your bot's message. For the moment, only Telegram for Android supports this.
      *                  See https://core.telegram.org/bots/api#using-markdown
      * @param disable_web_page_preview Disables link previews for links in this message
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendMessage(Integer chat_id, String text, String parse_mode, Boolean disable_web_page_preview, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendMessage(Integer chat_id, String text, String parse_mode, Boolean disable_notification, Boolean disable_web_page_preview, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to forward messages of any kind. On success, the sent {@link Message} is returned.
@@ -77,9 +78,19 @@ public interface BotAPI {
      * @param message_id Unique message identifier
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
-     */
-    
+     */ 
     public Message forwardMessage(Integer chat_id, Integer from_chat_id, Integer message_id) throws TelegramException;
+    
+    /**
+     * Use this method to forward messages of any kind. On success, the sent {@link Message} is returned.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param from_chat_id Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
+     * @param message_id Unique message identifier
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */ 
+    public Message forwardMessage(Integer chat_id, Integer from_chat_id, Boolean disable_notification, Integer message_id) throws TelegramException;
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
@@ -104,13 +115,14 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param photo Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data.
      * @param caption Photo caption (may also be used when resending photos by file_id).
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendPhoto(Integer chat_id, Object photo, String caption, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendPhoto(Integer chat_id, Object photo, String caption, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display them in the music player. 
@@ -154,14 +166,15 @@ public interface BotAPI {
      * @param audio Audio file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
      * @param duration Duration of the audio in seconds
      * @param performer Performer
-     * @param title Track name 
+     * @param title Track name
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendAudio(Integer chat_id, Object audio, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendAudio(Integer chat_id, Object audio, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -191,13 +204,14 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param document File to send. You can either pass a file_id as String to resend a file that is already on the Telegram servers, 
      *                  or upload a new file using multipart/form-data.
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendDocument(Integer chat_id, Object document, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendDocument(Integer chat_id, Object document, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     
     /**
@@ -226,12 +240,13 @@ public interface BotAPI {
      * @param sticker Sticker to send. You can either pass a file_id as String to resend a sticker that is already on the Telegram servers, 
      *                  or upload a new sticker using multipart/form-data.
      * @param reply_to_message_id If the message is a reply, ID of the original message
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendSticker(Integer chat_id, Object sticker, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendSticker(Integer chat_id, Object sticker, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     
     /**
@@ -265,14 +280,15 @@ public interface BotAPI {
      * @param video Video file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
      * @param duration Duration of the audio in seconds
      * @param performer Performer
-     * @param title Track name 
+     * @param title Track name
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVideo(Integer chat_id, Object video, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVideo(Integer chat_id, Object video, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
@@ -305,14 +321,15 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @param duration Duration of the audio in seconds 
+     * @param duration Duration of the audio in seconds
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVoice(Integer chat_id, Object voice, Integer duration, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVoice(Integer chat_id, Object voice, Integer duration, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send point on the map. On success, the sent {@link Message} is returned.
@@ -329,13 +346,14 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param latitude Latitude of location
      * @param longitude Longitude of location
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
      *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendLocation(Integer chat_id, Float latitude, Float longitude, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendLocation(Integer chat_id, Float latitude, Float longitude, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method when you need to tell the user that something is happening on the bot's side. 

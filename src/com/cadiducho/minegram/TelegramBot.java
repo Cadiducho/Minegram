@@ -105,11 +105,11 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendMessage(Integer chat_id, String text) throws TelegramException {
-        return sendMessage(chat_id, text, null, null, null, null);
+        return sendMessage(chat_id, text, null, null, false, null, null);
     }
 
     @Override
-    public Message sendMessage(Integer chat_id, String text, String parse_mode, Boolean disable_web_page_preview, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendMessage(Integer chat_id, String text, String parse_mode, Boolean disable_web_page_preview, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
@@ -117,6 +117,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("text", text));
         par.putAll(safe("parse_mode", parse_mode));
         par.putAll(safe("disable_web_page_preview", disable_web_page_preview));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
 
@@ -127,9 +128,15 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message forwardMessage(Integer chat_id, Integer from_chat_id, Integer message_id) throws TelegramException {
+        return forwardMessage(chat_id, from_chat_id, false, null);
+    }
+    
+    @Override
+    public Message forwardMessage(Integer chat_id, Integer from_chat_id, Boolean disable_notification, Integer message_id) throws TelegramException {
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("from_chat_id", from_chat_id));
         par.putAll(safe("message_id", message_id));     
         
@@ -140,21 +147,22 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendPhoto(Integer chat_id, String photo) throws TelegramException {
-        return sendPhoto(chat_id, photo, null, null, null);
+        return sendPhoto(chat_id, photo, null, false, null, null);
     }
     
     @Override
     public Message sendPhoto(Integer chat_id, File photo) throws TelegramException {
-        return sendPhoto(chat_id, photo, null, null, null);
+        return sendPhoto(chat_id, photo, null, false, null, null);
     }
     
     @Override
-    public Message sendPhoto(Integer chat_id, Object photo, String caption, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendPhoto(Integer chat_id, Object photo, String caption, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("chat_id", chat_id));
         par.putAll(safe("caption", caption));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
         
@@ -174,16 +182,16 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendAudio(Integer chat_id, String audio) throws TelegramException {
-        return sendAudio(chat_id, audio, null, null, null, null, null);
+        return sendAudio(chat_id, audio, null,  null, null, false, null, null);
     }
 
     @Override
     public Message sendAudio(Integer chat_id, File audio) throws TelegramException {
-        return sendAudio(chat_id, audio, null, null, null, null, null);
+        return sendAudio(chat_id, audio, null, null, null, false, null, null);
     }
 
     @Override
-    public Message sendAudio(Integer chat_id, Object audio, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendAudio(Integer chat_id, Object audio, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
@@ -191,6 +199,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("duration", duration));
         par.putAll(safe("performer", performer));
         par.putAll(safe("title", title));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
         
@@ -210,20 +219,21 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendDocument(Integer chat_id, String document) throws TelegramException {
-        return sendDocument(chat_id, document, null, null);
+        return sendDocument(chat_id, document, false, null, null);
     }
 
     @Override
     public Message sendDocument(Integer chat_id, File document) throws TelegramException {
-        return sendDocument(chat_id, document, null, null);
+        return sendDocument(chat_id, document, false, null, null);
     }
 
     @Override
-    public Message sendDocument(Integer chat_id, Object document, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendDocument(Integer chat_id, Object document, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
         
@@ -243,20 +253,21 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendSticker(Integer chat_id, String sticker) throws TelegramException {
-        return sendSticker(chat_id, sticker, null, null);
+        return sendSticker(chat_id, sticker, false, null, null);
     }
 
     @Override
     public Message sendSticker(Integer chat_id, File sticker) throws TelegramException {
-        return sendSticker(chat_id, sticker, null, null);
+        return sendSticker(chat_id, sticker, false, null, null);
     }
 
     @Override
-    public Message sendSticker(Integer chat_id, Object sticker, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendSticker(Integer chat_id, Object sticker, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
         
@@ -276,16 +287,16 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendVideo(Integer chat_id, String video) throws TelegramException {
-        return sendVideo(chat_id, video, null, null, null, null, null);
+        return sendVideo(chat_id, video, null, null, null, false, null, null);
     }
 
     @Override
     public Message sendVideo(Integer chat_id, File video) throws TelegramException {
-        return sendVideo(chat_id, video, null, null, null, null, null);
+        return sendVideo(chat_id, video, null, null, null, false, null, null);
     }
 
     @Override
-    public Message sendVideo(Integer chat_id, Object video, Integer duration, String performer, String title, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendVideo(Integer chat_id, Object video, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
@@ -293,6 +304,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("duration", duration));
         par.putAll(safe("performer", performer));
         par.putAll(safe("title", title));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
         
@@ -312,21 +324,22 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendVoice(Integer chat_id, String voice) throws TelegramException {
-        return sendVoice(chat_id, voice, null, null, null);
+        return sendVoice(chat_id, voice, null, false, null, null);
     }
 
     @Override
     public Message sendVoice(Integer chat_id, File voice) throws TelegramException {
-        return sendVoice(chat_id, voice, null, null, null);
+        return sendVoice(chat_id, voice, null, false, null, null);
     }
 
     @Override
-    public Message sendVoice(Integer chat_id, Object voice, Integer duration, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendVoice(Integer chat_id, Object voice, Integer duration, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("chat_id", chat_id));
         par.putAll(safe("duration", duration));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
         
@@ -346,17 +359,18 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendLocation(Integer chat_id, Float latitude, Float longitude) throws TelegramException {
-        return sendLocation(chat_id, latitude, longitude, null, null);
+        return sendLocation(chat_id, latitude, longitude, false, null, null);
     }
 
     @Override
-    public Message sendLocation(Integer chat_id, Float latitude, Float longitude, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendLocation(Integer chat_id, Float latitude, Float longitude, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("chat_id", chat_id));
         par.putAll(safe("latitude", latitude));
         par.putAll(safe("longitude", longitude));
+        par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));
         par.putAll(safe("reply_markup", reply_markup));
 
@@ -452,5 +466,5 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "answerInlineQuery").queryString(par));
 
         return "True".equalsIgnoreCase(resultBody);
-    }
+    } 
 }
