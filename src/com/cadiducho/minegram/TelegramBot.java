@@ -86,8 +86,7 @@ public class TelegramBot implements BotAPI {
                     ForceReply.class.getName());
             }
         }
-    }
-    //----------------
+    }  
     
     private Map<String, Object> safe(String str, Object obj) throws TelegramException {
         final Map<String, Object> parameters = new HashMap<>();
@@ -102,7 +101,8 @@ public class TelegramBot implements BotAPI {
         
         return parameters;
     }
-
+    //----------------
+    
     @Override
     public Message sendMessage(Integer chat_id, String text) throws TelegramException {
         return sendMessage(chat_id, text, null, null, false, null, null);
@@ -377,7 +377,52 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.post(apiUrl + "sendLocation").fields(par));
         return gson.fromJson(resultBody, Message.class);
     }
+    
+    @Override
+    public Message sendVenue(Integer chat_id, Float latitude, Float longitude, String title, String address) throws TelegramException {
+        return sendVenue(chat_id, latitude, longitude, title, address, null, false, null, null);
+    }
 
+    @Override
+    public Message sendVenue(Integer chat_id, Float latitude, Float longitude, String title, String address, String foursquare_id, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+        checkReply(reply_markup);
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("latitude", latitude));
+        par.putAll(safe("longitude", longitude));
+        par.putAll(safe("title", title));
+        par.putAll(safe("address", address));
+        par.putAll(safe("foursquare_id", foursquare_id));
+        par.putAll(safe("disable_notification", disable_notification));
+        par.putAll(safe("reply_to_message_id", reply_to_message_id));
+        par.putAll(safe("reply_markup", reply_markup));
+
+        final String resultBody = handleRequest(Unirest.post(apiUrl + "sendVenue").fields(par));
+        return gson.fromJson(resultBody, Message.class);
+    }
+
+    @Override
+    public Message sendContact(Integer chat_id, String phone_number, String first_name) throws TelegramException {
+        return sendContact(chat_id, phone_number, first_name, null, false, null, null);
+    }
+
+    @Override
+    public Message sendContact(Integer chat_id, String phone_number, String first_name, String last_name, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+        checkReply(reply_markup);
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("phone_number", phone_number));
+        par.putAll(safe("first_name", first_name));
+        par.putAll(safe("last_name", last_name));
+        par.putAll(safe("disable_notification", disable_notification));
+        par.putAll(safe("reply_to_message_id", reply_to_message_id));
+        par.putAll(safe("reply_markup", reply_markup));
+
+        final String resultBody = handleRequest(Unirest.post(apiUrl + "sendContact").fields(par));
+        return gson.fromJson(resultBody, Message.class);
+    }
     
     @Override
     public Boolean sendChatAction(Integer chat_id, ChatAction action) throws TelegramException {
@@ -466,5 +511,5 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "answerInlineQuery").queryString(par));
 
         return "True".equalsIgnoreCase(resultBody);
-    } 
+    }
 }

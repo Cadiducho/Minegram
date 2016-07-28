@@ -60,6 +60,11 @@ public class Message {
     private String text;
     
     /**
+     * Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text
+     */
+    private List<MessageEntity> entities;
+    
+    /**
      * Optional. Message is an audio file, information about the file
      */
     private Audio audio;
@@ -105,14 +110,18 @@ public class Message {
     private Location location;
     
     /**
+     * 	Optional. Message is a venue, information about the venue
+     */
+    private Venue venue;
+    /**
      * Optional. A new member was added to the group, information about them (this member may be bot itself)
      */
-    private User new_chat_participant;
+    private User new_chat_member;
     
     /**
      * Optional. A member was removed from the group, information about them (this member may be bot itself)
      */
-    private User left_chat_participant;
+    private User left_chat_member;
     
     /**
      * Optional. Message is a shared location, information about the location
@@ -155,6 +164,10 @@ public class Message {
     private Integer migrate_from_chat_id;
     
     /**
+     * Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
+     */
+    private Message pinned_message;
+    /**
      * Type of message, can be either text, audio, document, photo, sticker, video, contact, location, new_chat_participant
      *      left_chat_participant, new_chat_photo, delete_chat_photo or group_chat_created
      */
@@ -179,8 +192,8 @@ public class Message {
         else if (video != null) type = Type.VIDEO;
         else if (contact != null) type = Type.CONTACT;
         else if (location != null) type = Type.LOCATION;
-        else if (new_chat_participant != null) type = Type.NEW_CHAT_PARTICIPANT;
-        else if (left_chat_participant != null) type = Type.LEFT_CHAT_PARTICIPANT;
+        else if (new_chat_member != null) type = Type.NEW_CHAT_MEMBER;
+        else if (left_chat_member != null) type = Type.LEFT_CHAT_MEMBER;
         else if (new_chat_photo != null) type = Type.NEW_CHAT_PHOTO;
         else if (delete_chat_photo) type = Type.DELETE_CHAT_PHOTO;
         else if (group_chat_created) type = Type.GROUP_CHAT_CREATED;
@@ -199,8 +212,8 @@ public class Message {
         VIDEO,
         CONTACT,
         LOCATION,
-        NEW_CHAT_PARTICIPANT,
-        LEFT_CHAT_PARTICIPANT,
+        NEW_CHAT_MEMBER,
+        LEFT_CHAT_MEMBER,
         NEW_CHAT_PHOTO,
         DELETE_CHAT_PHOTO,
         GROUP_CHAT_CREATED,

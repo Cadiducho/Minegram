@@ -356,6 +356,60 @@ public interface BotAPI {
     public Message sendLocation(Integer chat_id, Float latitude, Float longitude, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
+     * Use this method to send information about a venue. On success, the sent {@link Message} is returned.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param latitude Latitude of the venue
+     * @param longitude Longitude of the venue
+     * @param title Name of the venue
+     * @param address Address of the venue
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendVenue(Integer chat_id, Float latitude, Float longitude, String title, String address) throws TelegramException;
+    
+    /**
+     * Use this method to send information about a venue. On success, the sent {@link Message} is returned.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param latitude Latitude of the venue
+     * @param longitude Longitude of the venue
+     * @param title Name of the venue
+     * @param address Address of the venue
+     * @param foursquare_id Foursquare identifier of the venue
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
+     * @param reply_to_message_id If the message is a reply, ID of the original message
+     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendVenue(Integer chat_id, Float latitude, Float longitude, String title, String address, String foursquare_id, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    
+    /**
+     * Use this method to send phone contacts. On success, the sent {@link Message} is returned.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param phone_number Contact's phone number
+     * @param first_name Contact's first name
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendContact(Integer chat_id, String phone_number, String first_name)  throws TelegramException;
+    
+    /**
+     * Use this method to send phone contacts. On success, the sent {@link Message} is returned.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param phone_number Contact's phone number
+     * @param first_name Contact's first name
+     * @param last_name Contact's last name
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
+     * @param reply_to_message_id If the message is a reply, ID of the original message
+     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     * @return {@link Message}
+     * @throws TelegramException 
+     */
+    public Message sendContact(Integer chat_id, String phone_number, String first_name, String last_name, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup)  throws TelegramException;
+    
+    /**
      * Use this method when you need to tell the user that something is happening on the bot's side. 
      * The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
      * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
