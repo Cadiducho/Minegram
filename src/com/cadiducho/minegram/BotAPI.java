@@ -456,7 +456,6 @@ public interface BotAPI {
      */
     public UserProfilePhotos getUserProfilePhotos(Integer user_id) throws TelegramException;
 
-
     /**
      * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
      *
@@ -470,7 +469,7 @@ public interface BotAPI {
     
     /**
      * Use this method to get basic info about a file and prepare it for downloading.
-     * For the moment, bots can download files of up to 20MB in size. On success, a {@link de.raysha.lib.telegram.bot.api.model.File} object is returned.
+     * For the moment, bots can download files of up to 20MB in size. On success, a File object is returned.
      * The file can then be downloaded via the link https://api.telegram.org/file/bot&lt;token&gt;/&lt;file_path&gt;,
      * where &lt;file_path&gt; is taken from the response. It is guaranteed that the link will be valid for at least 1 hour.
      * When the link expires, a new one can be requested by calling getFile again.
@@ -480,6 +479,26 @@ public interface BotAPI {
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public File getFile(String file_id) throws TelegramException;
+    
+    /**
+     * Use this method to kick a user from a group or a supergroup. In the case of supergroups, 
+     *      the user will not be able to return to the group on their own using invite links, etc., unless unbanned first. 
+     * The bot must be an administrator in the group for this to work. Returns True on success.
+     * @param chat_id Unique identifier for the target group or username of the target supergroup (in the format @supergroupusername)
+     * @param user_id Unique identifier of the target user
+     * @return 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean kickChatMember(Integer chat_id, Integer user_id) throws TelegramException;
+    
+    /**
+     * 
+     * @param chat_id Unique identifier for the target group or username of the target supergroup (in the format @supergroupusername)
+     * @param user_id Unique identifier of the target user
+     * @return
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean unbanChatMember(Integer chat_id, Integer user_id) throws TelegramException;
     
     /**
      * Use this method to receive incoming updates using long polling (wiki). An Array of {@link Update} objects is returned.

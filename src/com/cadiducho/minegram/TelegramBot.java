@@ -466,6 +466,28 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getFile").queryString(par));
         return gson.fromJson(resultBody, File.class);
     }
+    
+    @Override
+    public Boolean kickChatMember(Integer chat_id, Integer user_id) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("user_id", user_id));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "kickChatMember").queryString(par));
+        return "True".equalsIgnoreCase(resultBody);
+    }
+
+    @Override
+    public Boolean unbanChatMember(Integer chat_id, Integer user_id) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("user_id", user_id));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "unbanChatMember").queryString(par));
+        return "True".equalsIgnoreCase(resultBody);
+    }
 
     @Override
     public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException {
