@@ -39,6 +39,11 @@ public class Sticker {
     private PhotoSize thumb;
     
     /**
+     * Optional. Emoji associated with the sticker
+     */
+    private String emoji;
+    
+    /**
      * Optional. File size
      */
     private Integer file_size;
