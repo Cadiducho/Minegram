@@ -41,4 +41,8 @@ public class Update {
      */
     private ChosenInlineResult chosen_inline_result;
     
+    /**
+     * Optional. New incoming callback query
+     */
+    private CallbackQuery callback_query;
 }

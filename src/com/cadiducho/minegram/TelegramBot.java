@@ -488,6 +488,23 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "unbanChatMember").queryString(par));
         return "True".equalsIgnoreCase(resultBody);
     }
+    
+    @Override
+    public Boolean answerCallbackQuery(String callback_query_id) throws TelegramException {
+        return answerCallbackQuery(callback_query_id, null, false);
+    }
+
+    @Override
+    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("callback_query_id", callback_query_id));
+        par.putAll(safe("text", text));
+        par.putAll(safe("show_alert", show_alert));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "answerCallbackQuery").queryString(par));
+        return "True".equalsIgnoreCase(resultBody);
+    }
 
     @Override
     public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException {

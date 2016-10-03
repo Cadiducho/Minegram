@@ -407,7 +407,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws TelegramException 
      */
-    public Message sendContact(Integer chat_id, String phone_number, String first_name, String last_name, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup)  throws TelegramException;
+    public Message sendContact(Integer chat_id, String phone_number, String first_name, String last_name, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method when you need to tell the user that something is happening on the bot's side. 
@@ -492,6 +492,10 @@ public interface BotAPI {
     public Boolean kickChatMember(Integer chat_id, Integer user_id) throws TelegramException;
     
     /**
+     * se this method to unban a previously kicked user in a supergroup. 
+     * The user will not return to the group automatically, but will be able to join via link, etc. 
+     * The bot must be an administrator in the group for this to work. 
+     * Returns True on success.
      * 
      * @param chat_id Unique identifier for the target group or username of the target supergroup (in the format @supergroupusername)
      * @param user_id Unique identifier of the target user
@@ -499,6 +503,30 @@ public interface BotAPI {
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean unbanChatMember(Integer chat_id, Integer user_id) throws TelegramException;
+    
+    /**
+     * Use this method to send answers to callback queries sent from inline keyboards. 
+     * The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. 
+     * On success, True is returned.
+     * 
+     * @param callback_query_id Unique identifier for the query to be answered
+     * @return 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean answerCallbackQuery(String callback_query_id) throws TelegramException;
+    
+    /**
+     * Use this method to send answers to callback queries sent from inline keyboards. 
+     * The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. 
+     * On success, True is returned.
+     * 
+     * @param callback_query_id Unique identifier for the query to be answered
+     * @param text Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
+     * @param show_alert If true, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
+     * @return 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert) throws TelegramException;
     
     /**
      * Use this method to receive incoming updates using long polling (wiki). An Array of {@link Update} objects is returned.

@@ -36,6 +36,11 @@ public abstract class InlineQueryResult {
      * Unique identifier for this result, 1-64 Bytes
      */
     protected String id;
+    
+    /**
+     * Optional. Inline keyboard attached to the message
+     */
+    protected InlineKeyboardMarkup reply_markup;
 
     public InlineQueryResult(String type) {
         this.type = type;
