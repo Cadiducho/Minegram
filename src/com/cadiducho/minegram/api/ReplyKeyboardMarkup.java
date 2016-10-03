@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Cadiducho.
+ * Copyright 2016 Cadiducho.
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
@@ -22,7 +22,7 @@ public class ReplyKeyboardMarkup {
     /**
      * Array of button rows, each represented by an Array of Strings
      */
-    private List<List<String>> keyboard;
+    private List<List<KeyboardButton>> keyboard;
     
     /**
      * Optional. Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). 
