@@ -528,6 +528,47 @@ public interface BotAPI {
      */
     public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert) throws TelegramException;
     
+    
+    /**
+     * Use this method to edit text and game messages sent by the bot or via the bot (for inline bots). 
+     * On success, if edited message is sent by the bot, the edited {@link Message} is returned, otherwise True is returned.
+     * @param chat_id Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param message_id Required if inline_message_id is not specified. Unique identifier of the sent message
+     * @param inline_message_id Required if chat_id and message_id are not specified. Identifier of the inline message
+     * @param text New text of the message
+     * @param parse_mode Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
+     * @param disable_web_page_preview Disables link previews for links in this message
+     * @param reply_markup 	A JSON-serialized object for an inline keyboard.
+     * @return 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean editMessageText(Integer chat_id, Integer message_id, String inline_message_id, String text, String parse_mode, Boolean disable_web_page_preview, InlineKeyboardMarkup reply_markup) throws TelegramException;
+    
+    /**
+     * Use this method to edit captions of messages sent by the bot or via the bot (for inline bots). 
+     * On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+     * @param chat_id Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param message_id Required if inline_message_id is not specified. Unique identifier of the sent message
+     * @param inline_message_id Required if chat_id and message_id are not specified. Identifier of the inline message
+     * @param caption New caption of the message
+     * @param reply_markup A JSON-serialized object for an inline keyboard.
+     * @return 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException 
+     */
+    public Boolean editMessageCaption(Integer chat_id, Integer message_id, String inline_message_id, String caption, InlineKeyboardMarkup reply_markup) throws TelegramException;
+    
+    /**
+     * Use this method to edit only the reply markup of messages sent by the bot or via the bot (for inline bots). 
+     * On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+     * @param chat_id Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param message_id Required if inline_message_id is not specified. Unique identifier of the sent message
+     * @param inline_message_id Required if chat_id and message_id are not specified. Identifier of the inline message
+     * @param reply_markup A JSON-serialized object for an inline keyboard.
+     * @return 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException 
+     */
+    public Boolean editMessageReplyMarkup(Integer chat_id, Integer message_id, String inline_message_id, InlineKeyboardMarkup reply_markup) throws TelegramException;
+            
     /**
      * Use this method to receive incoming updates using long polling (wiki). An Array of {@link Update} objects is returned.
      * @param offset Identifier of the first update to be returned. 

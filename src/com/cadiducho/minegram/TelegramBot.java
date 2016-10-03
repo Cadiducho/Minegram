@@ -505,6 +505,49 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "answerCallbackQuery").queryString(par));
         return "True".equalsIgnoreCase(resultBody);
     }
+    
+    @Override
+    public Boolean editMessageText(Integer chat_id, Integer message_id, String inline_message_id, String text, String parse_mode, Boolean disable_web_page_preview, InlineKeyboardMarkup reply_markup) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("message_id", message_id));
+        par.putAll(safe("inline_message_id", inline_message_id));
+        par.putAll(safe("text", text));
+        par.putAll(safe("parse_mode", parse_mode));
+        par.putAll(safe("disable_web_page_preview", disable_web_page_preview));
+        par.putAll(safe("reply_markup", reply_markup));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "editMessageText").queryString(par));
+        return "True".equalsIgnoreCase(resultBody);
+    }
+
+    @Override
+    public Boolean editMessageCaption(Integer chat_id, Integer message_id, String inline_message_id, String caption, InlineKeyboardMarkup reply_markup) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("message_id", message_id));
+        par.putAll(safe("caption", caption));
+        par.putAll(safe("inline_message_id", inline_message_id));
+        par.putAll(safe("reply_markup", reply_markup));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "editMessageText").queryString(par));
+        return "True".equalsIgnoreCase(resultBody);
+    }
+
+    @Override
+    public Boolean editMessageReplyMarkup(Integer chat_id, Integer message_id, String inline_message_id, InlineKeyboardMarkup reply_markup) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("message_id", message_id));
+        par.putAll(safe("inline_message_id", inline_message_id));
+        par.putAll(safe("reply_markup", reply_markup));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "editMessageText").queryString(par));
+        return "True".equalsIgnoreCase(resultBody);
+    }
 
     @Override
     public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException {
