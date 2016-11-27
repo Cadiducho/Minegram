@@ -5,37 +5,38 @@
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
-package com.cadiducho.minegram.api;
+package com.cadiducho.minegram.api.inline;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional
- * caption. Alternatively, you can provide <i>message_text</i> to send it instead of the animation.
+ * Represents a link to a video animation (H.264/MPEG-4 AVC video without sound). By default,
+ * this animated MPEG-4 file will be sent by the user with optional caption. Alternatively,
+ * you can provide message_text to send it instead of the animation.
  */
 @ToString
 @Getter @Setter
-public class InlineQueryResultGif extends InlineQueryResult {
-    
-    /**
-     * A valid URL for the GIF file. File size must not exceed 1MB
-     */
-    private String gif_url;
+public class InlineQueryResultMpeg4Gif extends InlineQueryResult {
 
     /**
-     * Optional. Width of the GIF
+     * A valid URL for the MP4 file. File size must not exceed 1MB
      */
-    private Integer gif_width;
+    private String mpeg4_url;
 
     /**
-     * Optional. Height of the GIF
+     * Optional. Video width
      */
-    private Integer gif_height;
+    private Integer mpeg4_width;
 
     /**
-     * URL of the static thumbnail for the result (jpeg or gif)
+     * Optional. Video height
+     */
+    private Integer mpeg4_height;
+
+    /**
+     * URL of the static thumbnail (jpeg or gif) for the result
      */
     private String thumb_url;
 
@@ -45,7 +46,7 @@ public class InlineQueryResultGif extends InlineQueryResult {
     private String title;
 
     /**
-     * Optional. Caption of the GIF file to be sent, 0-200 characters
+     * Optional. Caption of the MPEG-4 file to be sent, 0-200 characters
      */
     private String caption;
 
@@ -65,41 +66,42 @@ public class InlineQueryResultGif extends InlineQueryResult {
      */
     private Boolean disable_web_page_preview;
 
-    public InlineQueryResultGif() {
-        super("gif");
+    public InlineQueryResultMpeg4Gif() {
+        super("mpeg4_gif");
     }
 
     /**
      *
-     * @param gif_url A valid URL for the GIF file. File size must not exceed 1MB
-     * @param thumb_url URL of the static thumbnail for the result (jpeg or gif)
+     * @param mpeg4_url A valid URL for the MP4 file. File size must not exceed 1MB
+     * @param thumb_url URL of the static thumbnail (jpeg or gif) for the result
      */
-    public InlineQueryResultGif(String gif_url, String thumb_url) {
+    public InlineQueryResultMpeg4Gif(String mpeg4_url, String thumb_url) {
         this();
-        this.gif_url = gif_url;
+        this.mpeg4_url = mpeg4_url;
         this.thumb_url = thumb_url;
     }
 
     /**
      *
-     * @param gif_url A valid URL for the GIF file. File size must not exceed 1MB
-     * @param thumb_url URL of the static thumbnail for the result (jpeg or gif)
-     * @param gif_width Optional. Width of the GIF
-     * @param gif_height Optional. Height of the GIF
+     * @param mpeg4_url A valid URL for the MP4 file. File size must not exceed 1MB
+     * @param thumb_url URL of the static thumbnail (jpeg or gif) for the result
+     * @param mpeg4_width Optional. Video width
+     * @param mpeg4_height Optional. Video height
      * @param title Optional. Title for the result
-     * @param caption Optional. Caption of the GIF file to be sent, 0-200 characters
+     * @param caption Optional. Caption of the MPEG-4 file to be sent, 0-200 characters
      * @param message_text Optional. Text of a message to be sent instead of the animation, 1-512 characters
      * @param parse_mode Optional. Send “Markdown”, if you want Telegram apps to show
      *                   <a href="https://core.telegram.org/bots/api#using-markdown">bold, italic and inline URLs</a>
      *                   in your bot's message.
      * @param disable_web_page_preview Optional. Disables link previews for links in the sent message
      */
-    public InlineQueryResultGif(String gif_url, String thumb_url, Integer gif_width, Integer gif_height, String title,
-                                String caption, String message_text, String parse_mode, Boolean disable_web_page_preview) {
+    public InlineQueryResultMpeg4Gif(String mpeg4_url, String thumb_url, Integer mpeg4_width, Integer mpeg4_height,
+                                     String title, String caption, String message_text, String parse_mode,
+                                     Boolean disable_web_page_preview) {
         this();
-        this.gif_url = gif_url;
-        this.gif_width = gif_width;
-        this.gif_height = gif_height;
+        this.mpeg4_url = mpeg4_url;
+        this.mpeg4_width = mpeg4_width;
+        this.mpeg4_height = mpeg4_height;
         this.thumb_url = thumb_url;
         this.title = title;
         this.caption = caption;

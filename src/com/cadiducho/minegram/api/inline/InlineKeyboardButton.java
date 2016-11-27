@@ -5,7 +5,7 @@
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
-package com.cadiducho.minegram.api;
+package com.cadiducho.minegram.api.inline;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,5 +44,9 @@ public class InlineKeyboardButton {
      */
     private String switch_inline_query;
     
+    /**
+     * Optional. If set, pressing the button will insert the bot‘s username and the specified inline query in the current chat's input field. 
+     * Can be empty, in which case only the bot’s username will be inserted.
+     */
     private String switch_inline_query_current_chat;
 }

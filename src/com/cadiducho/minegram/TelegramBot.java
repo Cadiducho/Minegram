@@ -7,6 +7,8 @@
 
 package com.cadiducho.minegram;
 
+import com.cadiducho.minegram.api.inline.InlineKeyboardMarkup;
+import com.cadiducho.minegram.api.inline.InlineQueryResult;
 import com.cadiducho.minegram.api.*;
 import com.cadiducho.minegram.api.exception.TelegramException;
 import com.cadiducho.minegram.api.handlers.UpdatesPoller;
@@ -575,20 +577,23 @@ public class TelegramBot implements BotAPI {
     
     @Override
     public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results) throws TelegramException {
-        return answerInlineQuery(inlineQueryId, results, null, null, null);
+        return answerInlineQuery(inlineQueryId, results, null, null, null, null, null);
     }
 
     @Override
-    public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results, Integer cacheTime, Boolean isPersonal, String nextOffset) throws TelegramException {
+    public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results, Integer cache_time, Boolean is_personal, String next_offset,
+            String switch_pm_text, String switch_pm_parameter) throws TelegramException {
 
         final Map<String, Object> par = new HashMap<>();
         par.putAll(safe("inline_query_id", inlineQueryId));
 
         par.put("results", gson.toJson(results));
 
-        par.putAll(safe("cache_time", cacheTime));
-        par.putAll(safe("is_personal", isPersonal));
-        par.putAll(safe("next_offset", nextOffset));
+        par.putAll(safe("cache_time", cache_time));
+        par.putAll(safe("is_personal", is_personal));
+        par.putAll(safe("next_offset", next_offset));
+        par.putAll(safe("switch_pm_text", switch_pm_text));
+        par.putAll(safe("switch_pm_parameter", switch_pm_parameter));
 
         final String resultBody = handleRequest(Unirest.get(apiUrl + "answerInlineQuery").queryString(par));
 

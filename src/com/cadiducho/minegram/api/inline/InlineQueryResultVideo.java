@@ -5,14 +5,16 @@
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
-package com.cadiducho.minegram.api;
+package com.cadiducho.minegram.api.inline;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Represents link to a page containing an embedded video player or a video file.
+ * Represents a link to a video file stored on the Telegram servers.
+ * By default, this video file will be sent by the user with an optional caption.
+ * Alternatively, you can use input_message_content to send a message with the specified content instead of the video.
  */
 @ToString
 @Getter @Setter

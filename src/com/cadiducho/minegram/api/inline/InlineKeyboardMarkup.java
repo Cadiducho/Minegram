@@ -5,7 +5,7 @@
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
-package com.cadiducho.minegram.api;
+package com.cadiducho.minegram.api.inline;
 
 import java.util.List;
 import lombok.Getter;

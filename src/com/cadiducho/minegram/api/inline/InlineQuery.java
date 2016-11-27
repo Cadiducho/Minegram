@@ -5,8 +5,10 @@
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
-package com.cadiducho.minegram.api;
+package com.cadiducho.minegram.api.inline;
 
+import com.cadiducho.minegram.api.Location;
+import com.cadiducho.minegram.api.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,6 +29,11 @@ public class InlineQuery {
      * Sender
      */
     private User from;
+    
+    /**
+     * Optional. Sender location, only for bots that request user location
+     */
+    private Location location;
     
     /**
      * Text of the query

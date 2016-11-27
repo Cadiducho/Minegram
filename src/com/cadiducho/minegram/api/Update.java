@@ -7,6 +7,8 @@
 
 package com.cadiducho.minegram.api;
 
+import com.cadiducho.minegram.api.inline.ChosenInlineResult;
+import com.cadiducho.minegram.api.inline.InlineQuery;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

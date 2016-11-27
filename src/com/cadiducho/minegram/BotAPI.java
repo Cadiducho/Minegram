@@ -7,6 +7,8 @@
 
 package com.cadiducho.minegram;
 
+import com.cadiducho.minegram.api.inline.InlineKeyboardMarkup;
+import com.cadiducho.minegram.api.inline.InlineQueryResult;
 import com.cadiducho.minegram.api.*;
 import com.cadiducho.minegram.api.exception.*;
 import java.util.List;
@@ -623,15 +625,19 @@ public interface BotAPI {
      *
      * @param inlineQueryId Unique identifier for the answered query
      * @param results       A JSON-serialized array of results for the inline query
-     * @param cacheTime     The maximum amount of time in seconds that the result of the inline query may be cached on
+     * @param cache_time     The maximum amount of time in seconds that the result of the inline query may be cached on
      *                      the server. Defaults to 300.
-     * @param isPersonal    Pass <i>True</i>, if results may be cached on the server side only for the user that sent
+     * @param is_personal    Pass <i>True</i>, if results may be cached on the server side only for the user that sent
      *                      the query. By default, results may be returned to any user who sends the same query
-     * @param nextOffset    Pass the offset that a client should send in the next query with the same text to receive
+     * @param next_offset    Pass the offset that a client should send in the next query with the same text to receive
      *                      more results. Pass an empty string if there are no more results or if you don‘t support
      *                      pagination. Offset length can’t exceed 64 bytes.
+     * @param switch_pm_text If passed, clients will display a button with specified text that switches the user to a private chat 
+     *                      with the bot and sends the bot a start message with the parameter switch_pm_parameter
+     * @param switch_pm_parameter
      * @return
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results, Integer cacheTime, Boolean isPersonal, String nextOffset) throws TelegramException;
+    public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results, Integer cache_time, Boolean is_personal, String next_offset,
+                                    String switch_pm_text, String switch_pm_parameter) throws TelegramException;
 }

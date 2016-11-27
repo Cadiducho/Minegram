@@ -5,7 +5,7 @@
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
-package com.cadiducho.minegram.api;
+package com.cadiducho.minegram.api.inline;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -55,18 +55,6 @@ public class InlineQueryResultPhoto extends InlineQueryResult {
      */
     private String caption;
 
-    /**
-     * Optional. Text of a message to be sent instead of the photo, 1-512 characters
-     */
-    private String message_text;
-
-    /**
-     * Optional. Send “Markdown”, if you want Telegram apps to show
-     * <a href="https://core.telegram.org/bots/api#using-markdown">bold, italic and inline URLs</a>
-     * in your bot's message.
-     */
-    private String parse_mode;
-
     public InlineQueryResultPhoto() {
         super("photo");
     }
@@ -91,14 +79,9 @@ public class InlineQueryResultPhoto extends InlineQueryResult {
      * @param title Optional. Title for the result
      * @param description Optional. Short description of the result
      * @param caption Optional. Caption of the photo to be sent, 0-200 characters
-     * @param message_text Optional. Text of a message to be sent instead of the photo, 1-512 characters
-     * @param parse_mode Optional. Send “Markdown”, if you want Telegram apps to show
-     *                   <a href="https://core.telegram.org/bots/api#using-markdown">bold, italic and inline URLs</a>
-     *                   in your bot's message.
      */
     public InlineQueryResultPhoto(String photo_url, String thumb_url, Integer photo_width, Integer photo_height,
-                                  String title, String description, String caption, String message_text,
-                                  String parse_mode) {
+                                  String title, String description, String caption) {
         this();
         this.photo_url = photo_url;
         this.photo_width = photo_width;
@@ -107,8 +90,6 @@ public class InlineQueryResultPhoto extends InlineQueryResult {
         this.title = title;
         this.description = description;
         this.caption = caption;
-        this.message_text = message_text;
-        this.parse_mode = parse_mode;
     }
     
 }

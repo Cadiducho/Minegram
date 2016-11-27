@@ -24,9 +24,9 @@ import org.json.JSONObject;
 public class Chat {
     
     /**
-     * Unique identifier for this user or bot
+     * Unique identifier for this chat
      */
-    private Integer id;
+    private String id;
     
     /**
      * Type of chat, can be either “private”, “group”, “supergroup” or “channel”
@@ -52,6 +52,11 @@ public class Chat {
      * Optional. Last name of the other party in a private chat
      */
     private String last_name; 
+    
+    /**
+     * Optional. True if a group has ‘All Members Are Admins’ enabled.
+     */
+    private Boolean all_members_are_administrators;
     
     /**
      * Type of chat, can be either private, group, supergroup or channel
