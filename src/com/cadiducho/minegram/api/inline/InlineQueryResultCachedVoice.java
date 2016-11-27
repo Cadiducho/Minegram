@@ -56,12 +56,16 @@ public class InlineQueryResultCachedVoice extends InlineQueryResult {
      * @param title Title
      * @param caption Optional. Caption, 0-200 characters
      * @param performer Optional. Performer
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
-    public InlineQueryResultCachedVoice(String voice_file_id, String title, String caption, String performer) {
+    public InlineQueryResultCachedVoice(String voice_file_id, String title, String caption, String performer, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.voice_file_id = voice_file_id;
         this.title = title;
         this.caption = caption;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

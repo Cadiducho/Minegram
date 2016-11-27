@@ -93,9 +93,12 @@ public class InlineQueryResultGif extends InlineQueryResult {
      *                   <a href="https://core.telegram.org/bots/api#using-markdown">bold, italic and inline URLs</a>
      *                   in your bot's message.
      * @param disable_web_page_preview Optional. Disables link previews for links in the sent message
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
     public InlineQueryResultGif(String gif_url, String thumb_url, Integer gif_width, Integer gif_height, String title,
-                                String caption, String message_text, String parse_mode, Boolean disable_web_page_preview) {
+                                String caption, String message_text, String parse_mode, Boolean disable_web_page_preview,
+                                InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.gif_url = gif_url;
         this.gif_width = gif_width;
@@ -106,6 +109,8 @@ public class InlineQueryResultGif extends InlineQueryResult {
         this.message_text = message_text;
         this.parse_mode = parse_mode;
         this.disable_web_page_preview = disable_web_page_preview;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

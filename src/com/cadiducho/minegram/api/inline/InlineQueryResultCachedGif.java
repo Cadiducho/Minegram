@@ -52,12 +52,16 @@ public class InlineQueryResultCachedGif extends InlineQueryResult {
      * @param gif_file_id A valid file identifier for the GIF file
      * @param title Optional. Title for the result
      * @param caption Optional. Caption of the GIF file to be sent, 0-200 characters
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
-    public InlineQueryResultCachedGif(String gif_file_id,String title, String caption) {
+    public InlineQueryResultCachedGif(String gif_file_id,String title, String caption, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.gif_file_id = gif_file_id;
         this.title = title;
         this.caption = caption;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

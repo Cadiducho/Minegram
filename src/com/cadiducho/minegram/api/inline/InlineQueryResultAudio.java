@@ -67,15 +67,19 @@ public class InlineQueryResultAudio extends InlineQueryResult {
      * @param caption Optional. Caption, 0-200 characters
      * @param performer Optional. Performer
      * @param audio_duration Optional. Audio duration in seconds
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message to be sent
      */
     public InlineQueryResultAudio(String audio_url, String title, String caption, String performer,
-                                  Integer audio_duration) {
+                                  Integer audio_duration, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.audio_url = audio_url;
         this.title = title;
         this.caption = caption;
         this.performer = performer;
         this.audio_duration = audio_duration;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

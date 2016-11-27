@@ -112,10 +112,13 @@ public class InlineQueryResultVideo extends InlineQueryResult {
      * @param thumb_url URL of the thumbnail (jpeg only) for the video
      * @param title Title for the result
      * @param description Optional. Short description of the result
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
     public InlineQueryResultVideo(String video_url, String mime_type, String message_text, String parse_mode,
                                   Boolean disable_web_page_preview, Integer video_width, Integer video_height,
-                                  Integer video_duration, String thumb_url, String title, String description) {
+                                  Integer video_duration, String thumb_url, String title, String description,
+                                  InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.video_url = video_url;
         this.mime_type = mime_type;
@@ -128,6 +131,8 @@ public class InlineQueryResultVideo extends InlineQueryResult {
         this.thumb_url = thumb_url;
         this.title = title;
         this.description = description;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

@@ -53,12 +53,16 @@ public class InlineQueryResultCachedMpeg4Gif extends InlineQueryResult {
      * @param mpeg4_file_id A valid URL for the MP4 file. File size must not exceed 1MB
      * @param title Optional. Title for the result
      * @param caption Optional. Caption of the MPEG-4 file to be sent, 0-200 characters
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
-    public InlineQueryResultCachedMpeg4Gif(String mpeg4_file_id, String title, String caption) {
+    public InlineQueryResultCachedMpeg4Gif(String mpeg4_file_id, String title, String caption, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.mpeg4_file_id = mpeg4_file_id;
         this.title = title;
         this.caption = caption;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

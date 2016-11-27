@@ -62,13 +62,18 @@ public class InlineQueryResultCachedDocument extends InlineQueryResult {
      * @param title Title for the result
      * @param caption Optional. Caption of the document to be sent, 0-200 characters
      * @param description Optional. Short description of the result
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
-    public InlineQueryResultCachedDocument(String document_file_id, String title, String caption, String description) {
+    public InlineQueryResultCachedDocument(String document_file_id, String title, String caption, String description, 
+                                            InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.document_file_id = document_file_id;
         this.title = title;
         this.caption = caption;
         this.description = description;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

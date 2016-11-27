@@ -59,13 +59,17 @@ public class InlineQueryResultCachedPhoto extends InlineQueryResult {
      * @param title Optional. Title for the result
      * @param description Optional. Short description of the result
      * @param caption Optional. Caption of the photo to be sent, 0-200 characters
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
-    public InlineQueryResultCachedPhoto(String photo_file_id, String title, String description, String caption) {
+    public InlineQueryResultCachedPhoto(String photo_file_id, String title, String description, String caption, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.photo_file_id = photo_file_id;
         this.title = title;
         this.description = description;
         this.caption = caption;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

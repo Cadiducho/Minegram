@@ -37,6 +37,17 @@ public class InlineQueryResultCachedSticker extends InlineQueryResult {
         this();
         this.sticker_file_id = sticker_file_id;
     }
-
     
+    /**
+     *
+     * @param sticker_file_id A valid file identifier of the sticker
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
+     */
+    public InlineQueryResultCachedSticker(String sticker_file_id, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
+        this();
+        this.sticker_file_id = sticker_file_id;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
+    }
 }

@@ -95,10 +95,12 @@ public class InlineQueryResultArticle extends InlineQueryResult {
      * @param thumb_url Optional. Url of the thumbnail for the result
      * @param thumb_width Optional. Thumbnail width
      * @param thumb_height Optional. Thumbnail height
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message to be sent
      */
     public InlineQueryResultArticle(String title, String message_text, String parse_mode,
                                     Boolean disable_web_page_preview, String url, Boolean hide_url, String description,
-                                    String thumb_url, Integer thumb_width, Integer thumb_height) {
+                                    String thumb_url, Integer thumb_width, Integer thumb_height, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.title = title;
         this.message_text = message_text;
@@ -110,6 +112,8 @@ public class InlineQueryResultArticle extends InlineQueryResult {
         this.thumb_url = thumb_url;
         this.thumb_width = thumb_width;
         this.thumb_height = thumb_height;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

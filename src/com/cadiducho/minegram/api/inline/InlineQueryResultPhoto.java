@@ -79,9 +79,11 @@ public class InlineQueryResultPhoto extends InlineQueryResult {
      * @param title Optional. Title for the result
      * @param description Optional. Short description of the result
      * @param caption Optional. Caption of the photo to be sent, 0-200 characters
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
     public InlineQueryResultPhoto(String photo_url, String thumb_url, Integer photo_width, Integer photo_height,
-                                  String title, String description, String caption) {
+                                  String title, String description, String caption, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.photo_url = photo_url;
         this.photo_width = photo_width;
@@ -90,6 +92,8 @@ public class InlineQueryResultPhoto extends InlineQueryResult {
         this.title = title;
         this.description = description;
         this.caption = caption;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

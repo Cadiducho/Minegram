@@ -55,12 +55,16 @@ public class InlineQueryResultCachedVideo extends InlineQueryResult {
      * @param video_file_id A valid file identifier for the file
      * @param title Title for the result
      * @param description Optional. Short description of the result
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
-    public InlineQueryResultCachedVideo(String video_file_id, String title, String description) {
+    public InlineQueryResultCachedVideo(String video_file_id, String title, String description, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.video_file_id = video_file_id;
         this.title = title;
         this.description = description;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

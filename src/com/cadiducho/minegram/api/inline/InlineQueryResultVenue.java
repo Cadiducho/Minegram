@@ -88,8 +88,12 @@ public class InlineQueryResultVenue extends InlineQueryResult {
      * @param thumb_url Optional. URL of the thumbnail (jpeg only) for the file
      * @param thumb_width Optional. Thumbnail width
      * @param thumb_height Optional. Thumbnail height
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
-    public InlineQueryResultVenue(String title, String address, String foursquare_id, Float latitude, Float longitude, String thumb_url, Integer thumb_width, Integer thumb_height) {
+    public InlineQueryResultVenue(String title, String address, String foursquare_id, Float latitude, Float longitude,
+                                    String thumb_url, Integer thumb_width, Integer thumb_height,
+                                    InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.title = title;
         this.address = address;
@@ -99,6 +103,8 @@ public class InlineQueryResultVenue extends InlineQueryResult {
         this.thumb_url = thumb_url;
         this.thumb_width = thumb_width;
         this.thumb_height = thumb_height;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }

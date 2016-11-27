@@ -47,11 +47,15 @@ public class InlineQueryResultCachedAudio extends InlineQueryResult {
      *
      * @param audio_file_id A valid file identifier for the audio file
      * @param caption Optional. Caption, 0-200 characters
+     * @param reply_markup Optional. Inline keyboard attached to the message
+     * @param input_message_content Optional. Content of the message
      */
-    public InlineQueryResultCachedAudio(String audio_file_id, String caption) {
+    public InlineQueryResultCachedAudio(String audio_file_id, String caption, InlineKeyboardMarkup reply_markup, InputMessageContent input_message_content) {
         this();
         this.audio_file_id = audio_file_id;
         this.caption = caption;
+        this.reply_markup = reply_markup;
+        this.input_message_content = input_message_content;
     }
     
 }
