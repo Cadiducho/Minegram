@@ -39,6 +39,12 @@ public interface BotAPI {
      */
     public void setUpdatesPolling(Boolean bool);
     
+    /**
+     * Get Bot instance
+     * @return BotAPI
+     */
+    public BotAPI getInstance();
+    
     //---- Telegram Methods ----//
     
     /**

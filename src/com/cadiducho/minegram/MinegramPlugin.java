@@ -32,8 +32,7 @@ public class MinegramPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        instance = this;
-        Validate.notNull(instance, "Plugin cannot be null!");
+        instance = this;   
         log("Enabling Minegram " + getDescription().getVersion() + " by Cadiducho");
 
         File config = new File(getDataFolder() + File.separator + "config.yml");

@@ -24,6 +24,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang.Validate;
 import org.json.JSONObject;
 
 
@@ -31,27 +32,25 @@ public class TelegramBot implements BotAPI {
     
     private final String apiUrl;
     @Getter private final Plugin bukkitPlugin;
+    @Getter private final BotAPI instance;
     @Getter @Setter private Boolean updatesPolling;
     
     private final Gson gson = new Gson();
     
     public TelegramBot(String token, Plugin plugin){
-        apiUrl = "https://api.telegram.org/bot" + token + "/";
-        bukkitPlugin = plugin;
-        updatesPolling = true;
-        UpdatesPoller updatesPoller = new UpdatesPoller(this);
-        MinegramPlugin.bots.put(this, bukkitPlugin);
+        this(token, true, plugin);
     }
     
     public TelegramBot(String token, boolean pollthread, Plugin plugin){
+        Validate.notNull(plugin, "Plugin cannot be null!");
+        instance = (BotAPI) this;
         apiUrl = "https://api.telegram.org/bot" + token + "/";
         bukkitPlugin = plugin;
         updatesPolling = pollthread;
         UpdatesPoller updatesPoller = new UpdatesPoller(this);
-        MinegramPlugin.bots.put(this, bukkitPlugin);
+        MinegramPlugin.bots.put(instance, bukkitPlugin);
     }
-    
-    
+      
     @Override
     public User getMe() throws TelegramException {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getMe"));
@@ -79,11 +78,13 @@ public class TelegramBot implements BotAPI {
         if(replyMarkup != null){
             if(!(   replyMarkup instanceof ReplyKeyboardHide ||
                     replyMarkup instanceof ReplyKeyboardMarkup ||
+                    replyMarkup instanceof InlineKeyboardMarkup ||
                     replyMarkup instanceof ForceReply)){
 
                 throw new IllegalStateException("The replyMarkup must be on of the following classes: " +
                     ReplyKeyboardHide.class.getName() + ", " +
                     ReplyKeyboardMarkup.class.getName() + ", " +
+                    InlineKeyboardMarkup.class.getName() + ", " +
                     ForceReply.class.getName());
             }
         }
@@ -97,6 +98,7 @@ public class TelegramBot implements BotAPI {
             parameters.put("reply_markup", gson.toJson(obj));
             return parameters;
         }
+        
         //Return normal values (check optionals -> null)
         if (obj != null) parameters.put(str, obj);
         
