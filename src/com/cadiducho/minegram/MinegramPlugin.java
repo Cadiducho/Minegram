@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -32,7 +31,7 @@ public class MinegramPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        instance = this;   
+        instance = this;
         log("Enabling Minegram " + getDescription().getVersion() + " by Cadiducho");
 
         File config = new File(getDataFolder() + File.separator + "config.yml");

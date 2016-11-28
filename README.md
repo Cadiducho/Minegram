@@ -1,4 +1,4 @@
-Minegram - Telegram Bot API to Minecraft
+Minegram - Telegram Bot API implementation to Minecraft Servers
 ========================================
 > This API is a unofficial one. Lets you develop Telegram Bots easily to Bukkit Plugins! Check [Telegram Bot API](https://core.telegram.org/bots) for more info.
 
@@ -23,7 +23,7 @@ If you want use Minegram as a Maven Dependency simply add repo and artifact:
 <dependency>
     <groupId>com.cadiducho</groupId>
     <artifactId>Minegram</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
 </dependency>
 ```
 
