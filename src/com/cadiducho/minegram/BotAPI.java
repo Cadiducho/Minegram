@@ -494,6 +494,14 @@ public interface BotAPI {
     public Boolean kickChatMember(Integer chat_id, Integer user_id) throws TelegramException;
     
     /**
+     * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @return 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean leaveChat(Integer chat_id) throws TelegramException;
+    
+    /**
      * se this method to unban a previously kicked user in a supergroup. 
      * The user will not return to the group automatically, but will be able to join via link, etc. 
      * The bot must be an administrator in the group for this to work. 
@@ -505,6 +513,40 @@ public interface BotAPI {
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean unbanChatMember(Integer chat_id, Integer user_id) throws TelegramException;
+    
+    /**
+     * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.).
+     * Returns a {@link Chat} object on success.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @return {@link Chat}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Chat getChat(Integer chat_id) throws TelegramException;
+    
+    /**
+     * 
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @return Array of {@link ChatMember}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public List<ChatMember> getChatAdministrators(Integer chat_id) throws TelegramException;
+    
+    /**
+     * Use this method to get the number of members in a chat. Returns Int on success.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @return 
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Integer getChatMembersCount(Integer chat_id) throws TelegramException;
+    
+    /**
+     * 
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @param user_id Unique identifier of the target user
+     * @return {@link ChatMember}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public ChatMember getChatMember(Integer chat_id, Integer user_id) throws TelegramException;
     
     /**
      * Use this method to send answers to callback queries sent from inline keyboards. 

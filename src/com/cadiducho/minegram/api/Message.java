@@ -60,6 +60,11 @@ public class Message {
     private Message reply_to_message;
     
     /**
+     * Optional. Date the message was last edited in Unix time
+     */
+    private Integer edit_date;
+    
+    /**
      * Optional. For text messages, the actual UTF-8 text of the message
      */
     private String text;

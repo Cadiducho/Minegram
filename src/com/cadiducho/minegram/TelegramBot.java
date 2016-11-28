@@ -22,7 +22,6 @@ import org.bukkit.plugin.Plugin;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONObject;
@@ -479,6 +478,16 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "kickChatMember").queryString(par));
         return "True".equalsIgnoreCase(resultBody);
     }
+    
+    @Override
+    public Boolean leaveChat(Integer chat_id) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "leaveChat").queryString(par));
+        return "True".equalsIgnoreCase(resultBody);
+    }
 
     @Override
     public Boolean unbanChatMember(Integer chat_id, Integer user_id) throws TelegramException {
@@ -489,6 +498,48 @@ public class TelegramBot implements BotAPI {
         
         final String resultBody = handleRequest(Unirest.get(apiUrl + "unbanChatMember").queryString(par));
         return "True".equalsIgnoreCase(resultBody);
+    }
+    
+    @Override
+    public Chat getChat(Integer chat_id) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "getChat").queryString(par));
+        return gson.fromJson(resultBody, Chat.class);
+    }
+    
+    @Override
+    public List<ChatMember> getChatAdministrators(Integer chat_id) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "getChatAdministrators").queryString(par));
+        Type listType = new TypeToken<List<ChatMember>>() {}.getType();
+        return gson.fromJson(resultBody, listType);
+    }
+    
+    @Override
+    public Integer getChatMembersCount(Integer chat_id) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "getChatMembersCount").queryString(par));
+        return gson.fromJson(resultBody, Integer.class);
+    }
+    
+    @Override
+    public ChatMember getChatMember(Integer chat_id, Integer user_id) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("user_id", user_id));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "getChatMember").queryString(par));
+        return gson.fromJson(resultBody, ChatMember.class);
     }
     
     @Override
@@ -560,7 +611,7 @@ public class TelegramBot implements BotAPI {
         par.putAll(safe("timeout", timeout));
 
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getUpdates").queryString(par));
-        Type listType = new TypeToken<ArrayList<Update>>() {}.getType();
+        Type listType = new TypeToken<List<Update>>() {}.getType();
         return gson.fromJson(resultBody, listType);
     }
 

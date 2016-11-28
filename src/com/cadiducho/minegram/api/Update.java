@@ -34,6 +34,11 @@ public class Update {
     private Message message;
     
     /**
+     * Optional. New version of a message that is known to the bot and was edited
+     */
+    private Message edited_message;
+    
+    /**
      * Optional. New incoming <a href="https://core.telegram.org/bots/api#inline-mode" >inline</a> query
      */
     private InlineQuery inline_query;
