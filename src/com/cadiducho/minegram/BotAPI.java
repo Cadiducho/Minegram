@@ -264,7 +264,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param video Video to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @return 
+     * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendVideo(Integer chat_id, String video) throws TelegramException;
@@ -276,7 +276,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param video Video to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @return 
+     * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendVideo(Integer chat_id, File video) throws TelegramException;
@@ -305,7 +305,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @return 
+     * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendVoice(Integer chat_id, String voice) throws TelegramException;
@@ -317,7 +317,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
-     * @return 
+     * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Message sendVoice(Integer chat_id, File voice) throws TelegramException;
@@ -427,7 +427,7 @@ public interface BotAPI {
      *          Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, 
      *          record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, 
      *          find_location for location data.
-     * @return Boolean
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean sendChatAction(Integer chat_id, String action) throws TelegramException;
@@ -450,7 +450,7 @@ public interface BotAPI {
      *          Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, 
      *          record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, 
      *          find_location for location data.
-     * @return Boolean
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean sendChatAction(Integer chat_id, ChatAction action) throws TelegramException;
@@ -483,7 +483,7 @@ public interface BotAPI {
      * When the link expires, a new one can be requested by calling getFile again.
      *
      * @param file_id
-     * @return
+     * @return {@link File}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public File getFile(String file_id) throws TelegramException;
@@ -494,7 +494,7 @@ public interface BotAPI {
      * The bot must be an administrator in the group for this to work. Returns True on success.
      * @param chat_id Unique identifier for the target group or username of the target supergroup (in the format @supergroupusername)
      * @param user_id Unique identifier of the target user
-     * @return 
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean kickChatMember(Integer chat_id, Integer user_id) throws TelegramException;
@@ -502,7 +502,7 @@ public interface BotAPI {
     /**
      * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
      * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
-     * @return 
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean leaveChat(Integer chat_id) throws TelegramException;
@@ -515,7 +515,7 @@ public interface BotAPI {
      * 
      * @param chat_id Unique identifier for the target group or username of the target supergroup (in the format @supergroupusername)
      * @param user_id Unique identifier of the target user
-     * @return
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean unbanChatMember(Integer chat_id, Integer user_id) throws TelegramException;
@@ -540,7 +540,7 @@ public interface BotAPI {
     /**
      * Use this method to get the number of members in a chat. Returns Int on success.
      * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
-     * @return 
+     * @return Number of members in a chat
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Integer getChatMembersCount(Integer chat_id) throws TelegramException;
@@ -560,7 +560,7 @@ public interface BotAPI {
      * On success, True is returned.
      * 
      * @param callback_query_id Unique identifier for the query to be answered
-     * @return 
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean answerCallbackQuery(String callback_query_id) throws TelegramException;
@@ -568,16 +568,14 @@ public interface BotAPI {
     /**
      * Use this method to send answers to callback queries sent from inline keyboards. 
      * The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. 
-     * On success, True is returned.
      * 
      * @param callback_query_id Unique identifier for the query to be answered
      * @param text Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
      * @param show_alert If true, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
-     * @return 
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert) throws TelegramException;
-    
+    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert) throws TelegramException;    
     
     /**
      * Use this method to edit text and game messages sent by the bot or via the bot (for inline bots). 
@@ -589,7 +587,7 @@ public interface BotAPI {
      * @param parse_mode Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
      * @param disable_web_page_preview Disables link previews for links in this message
      * @param reply_markup 	A JSON-serialized object for an inline keyboard.
-     * @return 
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean editMessageText(Integer chat_id, Integer message_id, String inline_message_id, String text, String parse_mode, Boolean disable_web_page_preview, InlineKeyboardMarkup reply_markup) throws TelegramException;
@@ -602,7 +600,7 @@ public interface BotAPI {
      * @param inline_message_id Required if chat_id and message_id are not specified. Identifier of the inline message
      * @param caption New caption of the message
      * @param reply_markup A JSON-serialized object for an inline keyboard.
-     * @return 
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException 
      */
     public Boolean editMessageCaption(Integer chat_id, Integer message_id, String inline_message_id, String caption, InlineKeyboardMarkup reply_markup) throws TelegramException;
@@ -614,7 +612,7 @@ public interface BotAPI {
      * @param message_id Required if inline_message_id is not specified. Unique identifier of the sent message
      * @param inline_message_id Required if chat_id and message_id are not specified. Identifier of the inline message
      * @param reply_markup A JSON-serialized object for an inline keyboard.
-     * @return 
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException 
      */
     public Boolean editMessageReplyMarkup(Integer chat_id, Integer message_id, String inline_message_id, InlineKeyboardMarkup reply_markup) throws TelegramException;
@@ -628,7 +626,7 @@ public interface BotAPI {
      * Watch more in https://core.telegram.org/bots/api#getupdates
      * @param limit Limits the number of updates to be retrieved. Values between 1—100 are accepted. Defaults to 100
      * @param timeout Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling
-     * @return
+     * @return An Array of {@link Update} objects
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException;
@@ -651,7 +649,7 @@ public interface BotAPI {
      * @param url         HTTPS url to send updates to. Use an empty string to remove webhook integration
      * @param certificate Upload your public key certificate so that the root certificate in use can be checked.
      *                    See our <a href="https://core.telegram.org/bots/self-signed">self-signed guide</a> for details.
-     * @return
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean setWebhook(String url, File certificate) throws TelegramException;
@@ -662,7 +660,7 @@ public interface BotAPI {
      *
      * @param inlineQueryId Unique identifier for the answered query
      * @param results       A JSON-serialized array of results for the inline query
-     * @return
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results) throws TelegramException;
@@ -683,7 +681,7 @@ public interface BotAPI {
      * @param switch_pm_text If passed, clients will display a button with specified text that switches the user to a private chat 
      *                      with the bot and sends the bot a start message with the parameter switch_pm_parameter
      * @param switch_pm_parameter
-     * @return
+     * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results, Integer cache_time, Boolean is_personal, String next_offset,

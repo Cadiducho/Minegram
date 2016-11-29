@@ -12,8 +12,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Represents a chat.
- * This might be a chat with a {@link User} or a {@link GroupChat}
+ * This object contains information about one member of the chat.
+ * See {@link ChatMember#getChatMemberStatus()}
  */
 @ToString
 @Getter @Setter
@@ -52,7 +52,11 @@ public class ChatMember {
      */
     private ChatMemberStatus chatMemberStatus;
     
-    public ChatMemberStatus getChatType() {
+    /**
+     * The member's status in the chat. Can be “creator”, “administrator”, “member”, “left” or “kicked”
+     * @return {@link ChatMemberStatus}
+     */
+    public ChatMemberStatus getChatMemberStatus() {
         if (chatMemberStatus == null) 
             determineStatus();
         return chatMemberStatus;

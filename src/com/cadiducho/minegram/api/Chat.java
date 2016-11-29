@@ -17,7 +17,8 @@ import org.json.JSONObject;
 
 /**
  * Represents a chat.
- * This might be a chat with a {@link User} or a {@link GroupChat}
+ * This might be a chat with a {@link User} or a GroupChat
+ * See {@link ChatType} by Chat#getChatType()
  */
 @ToString
 @Getter @Setter
@@ -95,7 +96,7 @@ public class Chat {
     }
     
     /**
-     * @return Whether this is a {@link GroupChat}
+     * @return Whether this is a GroupChat
      */
     public boolean isGroupChat() {
         return !isUser();
