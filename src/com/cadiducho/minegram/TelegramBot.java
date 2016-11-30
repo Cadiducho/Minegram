@@ -616,6 +616,14 @@ public class TelegramBot implements BotAPI {
         Type listType = new TypeToken<List<Update>>() {}.getType();
         return gson.fromJson(resultBody, listType);
     }
+    
+    @Override
+    public WebhookInfo getWebhookInfo() throws TelegramException {
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "getWebhookInfo"));
+
+        return gson.fromJson(resultBody, WebhookInfo.class);
+    }
+    
 
     @Override
     public Boolean setWebhook(String url, File certificate) throws TelegramException {

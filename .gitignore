@@ -1,6 +1,7 @@
 # Ignores Maven #
-####################
+#################
 /target/
+dependency-reduced-pom.xml
 
 # Others #
 ##########

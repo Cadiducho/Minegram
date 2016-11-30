@@ -632,6 +632,15 @@ public interface BotAPI {
     public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException;
     
     /**
+     * Use this method to get current webhook status. Requires no parameters. 
+     * On success, returns a {@link WebhookInfo} object.
+     * If the bot is using {@link BotAPI#getUpdates}, will return an object with the url field empty.
+     * @return {@WebhookInfo}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public WebhookInfo getWebhookInfo() throws TelegramException;
+    
+    /**
      * Use this method to specify a url and receive incoming updates via an outgoing webhook. Whenever there is an
      * update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update.
      * In case of an unsuccessful request, we will give up after a reasonable amount of attempts.
