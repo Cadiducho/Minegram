@@ -185,20 +185,21 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendAudio(Integer chat_id, String audio) throws TelegramException {
-        return sendAudio(chat_id, audio, null,  null, null, false, null, null);
+        return sendAudio(chat_id, audio, null, null,  null, null, false, null, null);
     }
 
     @Override
     public Message sendAudio(Integer chat_id, File audio) throws TelegramException {
-        return sendAudio(chat_id, audio, null, null, null, false, null, null);
+        return sendAudio(chat_id, audio, null, null, null, null, false, null, null);
     }
 
     @Override
-    public Message sendAudio(Integer chat_id, Object audio, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendAudio(Integer chat_id, Object audio, String caption, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("caption", caption));
         par.putAll(safe("duration", duration));
         par.putAll(safe("performer", performer));
         par.putAll(safe("title", title));
@@ -327,20 +328,21 @@ public class TelegramBot implements BotAPI {
 
     @Override
     public Message sendVoice(Integer chat_id, String voice) throws TelegramException {
-        return sendVoice(chat_id, voice, null, false, null, null);
+        return sendVoice(chat_id, voice, null, null, false, null, null);
     }
 
     @Override
     public Message sendVoice(Integer chat_id, File voice) throws TelegramException {
-        return sendVoice(chat_id, voice, null, false, null, null);
+        return sendVoice(chat_id, voice, null, null, false, null, null);
     }
 
     @Override
-    public Message sendVoice(Integer chat_id, Object voice, Integer duration, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+    public Message sendVoice(Integer chat_id, Object voice, String caption, Integer duration, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkReply(reply_markup);
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("caption", caption));
         par.putAll(safe("duration", duration));
         par.putAll(safe("disable_notification", disable_notification));
         par.putAll(safe("reply_to_message_id", reply_to_message_id));

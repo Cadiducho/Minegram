@@ -172,6 +172,7 @@ public interface BotAPI {
      * This behavior will be phased out in the future. For sending voice messages, use the sendVoice method instead.
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param audio Audio file to send. You can either pass a file_id as String to resend an audio that is already on the Telegram servers, or upload a new audio file using multipart/form-data.
+     * @param caption Audio caption, 0-200 characters
      * @param duration Duration of the audio in seconds
      * @param performer Performer
      * @param title Track name
@@ -182,7 +183,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendAudio(Integer chat_id, Object audio, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendAudio(Integer chat_id, Object audio, String caption, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -329,6 +330,7 @@ public interface BotAPI {
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param voice Audio file to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, 
      *                  or upload a new video file using multipart/form-data.
+     * @param caption Voice message caption, 0-200 characters
      * @param duration Duration of the audio in seconds
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
@@ -337,7 +339,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVoice(Integer chat_id, Object voice, Integer duration, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVoice(Integer chat_id, Object voice, String caption, Integer duration, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send point on the map. On success, the sent {@link Message} is returned.
