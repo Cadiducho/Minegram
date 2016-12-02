@@ -548,16 +548,17 @@ public class TelegramBot implements BotAPI {
     
     @Override
     public Boolean answerCallbackQuery(String callback_query_id) throws TelegramException {
-        return answerCallbackQuery(callback_query_id, null, false);
+        return answerCallbackQuery(callback_query_id, null, false, null);
     }
 
     @Override
-    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert) throws TelegramException {
+    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert, String url) throws TelegramException {
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("callback_query_id", callback_query_id));
         par.putAll(safe("text", text));
         par.putAll(safe("show_alert", show_alert));
+        par.putAll(safe("url", url));
         
         final String resultBody = handleRequest(Unirest.get(apiUrl + "answerCallbackQuery").queryString(par));
         return "True".equalsIgnoreCase(resultBody);
