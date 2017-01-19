@@ -61,7 +61,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendMessage(Integer chat_id, String text) throws TelegramException;
+    public Message sendMessage(Object chat_id, String text) throws TelegramException;
     
     /**
      * Use this method to send text messages. On success, the sent {@link Message} is returned.
@@ -77,7 +77,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendMessage(Integer chat_id, String text, String parse_mode, Boolean disable_notification, Boolean disable_web_page_preview, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendMessage(Object chat_id, String text, String parse_mode, Boolean disable_notification, Boolean disable_web_page_preview, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to forward messages of any kind. On success, the sent {@link Message} is returned.
@@ -87,7 +87,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */ 
-    public Message forwardMessage(Integer chat_id, Integer from_chat_id, Integer message_id) throws TelegramException;
+    public Message forwardMessage(Object chat_id, Integer from_chat_id, Integer message_id) throws TelegramException;
     
     /**
      * Use this method to forward messages of any kind. On success, the sent {@link Message} is returned.
@@ -98,7 +98,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */ 
-    public Message forwardMessage(Integer chat_id, Integer from_chat_id, Boolean disable_notification, Integer message_id) throws TelegramException;
+    public Message forwardMessage(Object chat_id, Integer from_chat_id, Boolean disable_notification, Integer message_id) throws TelegramException;
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
@@ -107,7 +107,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendPhoto(Integer chat_id, String photo) throws TelegramException;
+    public Message sendPhoto(Object chat_id, String photo) throws TelegramException;
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
@@ -116,7 +116,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendPhoto(Integer chat_id, File photo) throws TelegramException;
+    public Message sendPhoto(Object chat_id, File photo) throws TelegramException;
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
@@ -130,7 +130,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendPhoto(Integer chat_id, Object photo, String caption, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendPhoto(Object chat_id, Object photo, String caption, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display them in the music player. 
@@ -145,7 +145,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendAudio(Integer chat_id, String audio) throws TelegramException;
+    public Message sendAudio(Object chat_id, String audio) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display them in the music player. 
@@ -160,7 +160,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendAudio(Integer chat_id, File audio) throws TelegramException;
+    public Message sendAudio(Object chat_id, File audio) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display them in the music player. 
@@ -183,7 +183,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendAudio(Integer chat_id, Object audio, String caption, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendAudio(Object chat_id, Object audio, String caption, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -194,7 +194,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendDocument(Integer chat_id, String document) throws TelegramException;
+    public Message sendDocument(Object chat_id, String document) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -205,7 +205,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendDocument(Integer chat_id, File document) throws TelegramException;
+    public Message sendDocument(Object chat_id, File document) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -220,7 +220,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendDocument(Integer chat_id, Object document, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendDocument(Object chat_id, Object document, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     
     /**
@@ -231,7 +231,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendSticker(Integer chat_id, String sticker) throws TelegramException;
+    public Message sendSticker(Object chat_id, String sticker) throws TelegramException;
     
     /**
      * Use this method to send .webp stickers. On success, the sent {@link Message} is returned.
@@ -241,7 +241,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendSticker(Integer chat_id, File sticker) throws TelegramException;
+    public Message sendSticker(Object chat_id, File sticker) throws TelegramException;
     
     /**
      * Use this method to send .webp stickers. On success, the sent {@link Message} is returned.
@@ -255,7 +255,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendSticker(Integer chat_id, Object sticker, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendSticker(Object chat_id, Object sticker, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     
     /**
@@ -268,7 +268,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVideo(Integer chat_id, String video) throws TelegramException;
+    public Message sendVideo(Object chat_id, String video) throws TelegramException;
     
     /**
      * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as {@link Document}). 
@@ -280,7 +280,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVideo(Integer chat_id, File video) throws TelegramException;
+    public Message sendVideo(Object chat_id, File video) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -297,7 +297,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVideo(Integer chat_id, Object video, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVideo(Object chat_id, Object video, Integer duration, String performer, String title, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
@@ -309,7 +309,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVoice(Integer chat_id, String voice) throws TelegramException;
+    public Message sendVoice(Object chat_id, String voice) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
@@ -321,7 +321,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVoice(Integer chat_id, File voice) throws TelegramException;
+    public Message sendVoice(Object chat_id, File voice) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
@@ -339,7 +339,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVoice(Integer chat_id, Object voice, String caption, Integer duration, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVoice(Object chat_id, Object voice, String caption, Integer duration, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send point on the map. On success, the sent {@link Message} is returned.
@@ -349,7 +349,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendLocation(Integer chat_id, Float latitude, Float longitude) throws TelegramException;
+    public Message sendLocation(Object chat_id, Float latitude, Float longitude) throws TelegramException;
     
     /**
      * Use this method to send point on the map. On success, the sent {@link Message} is returned.
@@ -363,7 +363,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendLocation(Integer chat_id, Float latitude, Float longitude, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendLocation(Object chat_id, Float latitude, Float longitude, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send information about a venue. On success, the sent {@link Message} is returned.
@@ -375,7 +375,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVenue(Integer chat_id, Float latitude, Float longitude, String title, String address) throws TelegramException;
+    public Message sendVenue(Object chat_id, Float latitude, Float longitude, String title, String address) throws TelegramException;
     
     /**
      * Use this method to send information about a venue. On success, the sent {@link Message} is returned.
@@ -392,7 +392,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVenue(Integer chat_id, Float latitude, Float longitude, String title, String address, String foursquare_id, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendVenue(Object chat_id, Float latitude, Float longitude, String title, String address, String foursquare_id, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method to send phone contacts. On success, the sent {@link Message} is returned.
@@ -402,7 +402,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendContact(Integer chat_id, String phone_number, String first_name)  throws TelegramException;
+    public Message sendContact(Object chat_id, String phone_number, String first_name)  throws TelegramException;
     
     /**
      * Use this method to send phone contacts. On success, the sent {@link Message} is returned.
@@ -417,7 +417,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws TelegramException 
      */
-    public Message sendContact(Integer chat_id, String phone_number, String first_name, String last_name, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    public Message sendContact(Object chat_id, String phone_number, String first_name, String last_name, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
      * Use this method when you need to tell the user that something is happening on the bot's side. 
@@ -432,7 +432,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean sendChatAction(Integer chat_id, String action) throws TelegramException;
+    public Boolean sendChatAction(Object chat_id, String action) throws TelegramException;
     
     /**
      * Types of ChatAction. Idea by Rainu
@@ -455,7 +455,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean sendChatAction(Integer chat_id, ChatAction action) throws TelegramException;
+    public Boolean sendChatAction(Object chat_id, ChatAction action) throws TelegramException;
     
     /**
      * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
@@ -499,7 +499,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean kickChatMember(Integer chat_id, Integer user_id) throws TelegramException;
+    public Boolean kickChatMember(Object chat_id, Integer user_id) throws TelegramException;
     
     /**
      * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
@@ -507,7 +507,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean leaveChat(Integer chat_id) throws TelegramException;
+    public Boolean leaveChat(Object chat_id) throws TelegramException;
     
     /**
      * se this method to unban a previously kicked user in a supergroup. 
@@ -520,7 +520,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean unbanChatMember(Integer chat_id, Integer user_id) throws TelegramException;
+    public Boolean unbanChatMember(Object chat_id, Integer user_id) throws TelegramException;
     
     /**
      * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.).
@@ -529,7 +529,7 @@ public interface BotAPI {
      * @return {@link Chat}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Chat getChat(Integer chat_id) throws TelegramException;
+    public Chat getChat(Object chat_id) throws TelegramException;
     
     /**
      * 
@@ -537,7 +537,7 @@ public interface BotAPI {
      * @return Array of {@link ChatMember}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public List<ChatMember> getChatAdministrators(Integer chat_id) throws TelegramException;
+    public List<ChatMember> getChatAdministrators(Object chat_id) throws TelegramException;
     
     /**
      * Use this method to get the number of members in a chat. Returns Int on success.
@@ -545,7 +545,7 @@ public interface BotAPI {
      * @return Number of members in a chat
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Integer getChatMembersCount(Integer chat_id) throws TelegramException;
+    public Integer getChatMembersCount(Object chat_id) throws TelegramException;
     
     /**
      * 
@@ -554,7 +554,7 @@ public interface BotAPI {
      * @return {@link ChatMember}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public ChatMember getChatMember(Integer chat_id, Integer user_id) throws TelegramException;
+    public ChatMember getChatMember(Object chat_id, Integer user_id) throws TelegramException;
     
     /**
      * Use this method to send answers to callback queries sent from inline keyboards. 
@@ -595,7 +595,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean editMessageText(Integer chat_id, Integer message_id, String inline_message_id, String text, String parse_mode, Boolean disable_web_page_preview, InlineKeyboardMarkup reply_markup) throws TelegramException;
+    public Boolean editMessageText(Object chat_id, Integer message_id, String inline_message_id, String text, String parse_mode, Boolean disable_web_page_preview, InlineKeyboardMarkup reply_markup) throws TelegramException;
     
     /**
      * Use this method to edit captions of messages sent by the bot or via the bot (for inline bots). 
@@ -608,7 +608,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException 
      */
-    public Boolean editMessageCaption(Integer chat_id, Integer message_id, String inline_message_id, String caption, InlineKeyboardMarkup reply_markup) throws TelegramException;
+    public Boolean editMessageCaption(Object chat_id, Integer message_id, String inline_message_id, String caption, InlineKeyboardMarkup reply_markup) throws TelegramException;
     
     /**
      * Use this method to edit only the reply markup of messages sent by the bot or via the bot (for inline bots). 
@@ -620,7 +620,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException 
      */
-    public Boolean editMessageReplyMarkup(Integer chat_id, Integer message_id, String inline_message_id, InlineKeyboardMarkup reply_markup) throws TelegramException;
+    public Boolean editMessageReplyMarkup(Object chat_id, Integer message_id, String inline_message_id, InlineKeyboardMarkup reply_markup) throws TelegramException;
             
     /**
      * Use this method to receive incoming updates using long polling (wiki). An Array of {@link Update} objects is returned.
