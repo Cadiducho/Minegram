@@ -87,13 +87,13 @@ public class TelegramBot implements BotAPI {
      
     private void checkReply(Object replyMarkup) {
         if(replyMarkup != null){
-            if(!(   replyMarkup instanceof ReplyKeyboardHide ||
+            if(!(   replyMarkup instanceof ReplyKeyboardRemove ||
                     replyMarkup instanceof ReplyKeyboardMarkup ||
                     replyMarkup instanceof InlineKeyboardMarkup ||
                     replyMarkup instanceof ForceReply)){
 
                 throw new IllegalStateException("The replyMarkup must be on of the following classes: " +
-                    ReplyKeyboardHide.class.getName() + ", " +
+                    ReplyKeyboardRemove.class.getName() + ", " +
                     ReplyKeyboardMarkup.class.getName() + ", " +
                     InlineKeyboardMarkup.class.getName() + ", " +
                     ForceReply.class.getName());
@@ -578,17 +578,18 @@ public class TelegramBot implements BotAPI {
     
     @Override
     public Boolean answerCallbackQuery(String callback_query_id) throws TelegramException {
-        return answerCallbackQuery(callback_query_id, null, false, null);
+        return answerCallbackQuery(callback_query_id, null, false, null, 0);
     }
 
     @Override
-    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert, String url) throws TelegramException {
+    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert, String url, Integer cache_time) throws TelegramException {
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("callback_query_id", callback_query_id));
         par.putAll(safe("text", text));
         par.putAll(safe("show_alert", show_alert));
         par.putAll(safe("url", url));
+        par.putAll(safe("cache_time", cache_time));
         
         final String resultBody = handleRequest(Unirest.get(apiUrl + "answerCallbackQuery").queryString(par));
         return "True".equalsIgnoreCase(resultBody);

@@ -39,6 +39,15 @@ public class Update {
     private Message edited_message;
     
     /**
+     * Optional. New incoming channel post of any kind — text, photo, sticker, etc.
+     */
+    private Message channel_post;
+    
+    /**
+     * Optional. New version of a channel post that is known to the bot and was edited
+     */
+    private Message edited_channel_post;
+    /**
      * Optional. New incoming <a href="https://core.telegram.org/bots/api#inline-mode" >inline</a> query
      */
     private InlineQuery inline_query;

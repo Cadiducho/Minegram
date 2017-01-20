@@ -18,12 +18,13 @@ import lombok.ToString;
  */
 @ToString
 @Getter @Setter
-public class ReplyKeyboardHide {
+public class ReplyKeyboardRemove {
     
     /**
-     * Requests clients to hide the custom keyboard
+     * Requests clients to remove the custom keyboard (user will not be able to summon this keyboard; 
+     * if you want to hide the keyboard from sight but keep it accessible, use one_time_keyboard in {@link ReplyKeyboardMarkup})
      */
-    private Boolean hide_keyboard;
+    private Boolean remove_keyboard;
 
     /**
      * Optional. Use this parameter if you want to hide keyboard for specific users only. Targets: 1) users that are @mentioned

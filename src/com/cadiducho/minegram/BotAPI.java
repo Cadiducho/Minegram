@@ -577,10 +577,11 @@ public interface BotAPI {
      * @param url URL that will be opened by the user's client. 
             If you have created a Game and accepted the conditions via @Botfather, specify the URL that opens your game – note that this will only work if the query comes from a callback_game button.
             Otherwise, you may use links like telegram.me/your_bot?start=XXXX that open your bot with a parameter.
+     * @param cache_time The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert, String url) throws TelegramException;    
+    public Boolean answerCallbackQuery(String callback_query_id, String text, Boolean show_alert, String url, Integer cache_time) throws TelegramException;    
     
     /**
      * Use this method to edit text and game messages sent by the bot or via the bot (for inline bots). 

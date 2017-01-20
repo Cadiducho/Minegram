@@ -50,6 +50,11 @@ public class Message {
     private Chat forward_from_chat;
     
     /**
+     * Optional. For forwarded channel posts, identifier of the original message in the channel
+     */
+    private Integer forward_from_message_id;
+    
+    /**
      * Optional. For forwarded messages, date the original message was sent in Unix time
      */
     private Integer forward_date;
