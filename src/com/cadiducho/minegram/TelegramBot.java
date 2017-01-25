@@ -672,6 +672,12 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "setWebhook").queryString(par));
         return "True".equalsIgnoreCase(resultBody);
     }
+
+    @Override
+    public Boolean deleteWebhook() throws TelegramException {
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "deleteWebhook"));
+        return "True".equalsIgnoreCase(resultBody);
+    }
     
     @Override
     public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results) throws TelegramException {

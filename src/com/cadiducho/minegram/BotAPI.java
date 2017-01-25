@@ -73,7 +73,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -126,7 +126,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -179,7 +179,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -216,7 +216,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -251,7 +251,7 @@ public interface BotAPI {
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -293,7 +293,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -335,7 +335,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -359,7 +359,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -388,7 +388,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -413,7 +413,7 @@ public interface BotAPI {
      * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
      * @param reply_to_message_id If the message is a reply, ID of the original message
      * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
-     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardHide} or {@link ForceReply}.
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
      * @return {@link Message}
      * @throws TelegramException 
      */
@@ -668,7 +668,12 @@ public interface BotAPI {
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean setWebhook(String url, File certificate) throws TelegramException;
-    
+
+    /**
+     * Use this method to remove webhook integration if you decide to switch back to {@link BotAPI#getUpdates}. Returns True on success. Requires no parameters.
+     */
+    public Boolean deleteWebhook() throws TelegramException;
+
     /**
      * Use this method to send answers to an inline query. On success, True is returned.
      * No more than <b>50</b> results per query are allowed.

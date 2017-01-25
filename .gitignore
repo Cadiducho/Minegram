@@ -8,3 +8,5 @@ dependency-reduced-pom.xml
 *.jar
 *.class
 nb-configuration.xml
+.idea/
+*.iml
