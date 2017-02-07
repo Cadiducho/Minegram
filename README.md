@@ -34,4 +34,4 @@ This project is released under the [MIT-License](https://github.com/Cadiducho/Mi
 > This project is is highly inspired on [Irazasyed's Telegram Bot API - PHP SDK](https://github.com/irazasyed/telegram-bot-sdk) 
 > and [Rainu's telegram-bot-api](https://github.com/rainu/telegram-bot-api), but this one is written from scratch.
 
-© 2016 [Cadiducho](https://twitter.com/Cadiducho)
+© 2017 [Cadiducho](https://twitter.com/Cadiducho)

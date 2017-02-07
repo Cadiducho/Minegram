@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2016 Cadiducho.
+ * Copyright 2017 Cadiducho.
  * Read more in https://github.com/Cadiducho/Minegram/blob/master/LICENSE
  */
 
