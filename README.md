@@ -17,7 +17,7 @@ If you want use Minegram as a Maven Dependency simply add repo and artifact:
 ```xml
 <repository>
 	<id>cadiducho-repo</id>
-    <url>http://repo.cadiducho.com/</url>
+    <url>https://cadiducho.com/repo</url>
 </repository>
 ...
 <dependency>
