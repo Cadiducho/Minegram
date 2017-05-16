@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cadiducho</groupId>
     <artifactId>Minegram</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,7 +31,7 @@
     <distributionManagement>
         <repository>
             <id>cadiducho-repo</id>
-            <url>ftp://ftp.cadiducho.com/www/repo</url>
+            <url>ftp://ftp.cluster005.ovh.net/www/repo</url>
         </repository>
     </distributionManagement>
     <profiles>
@@ -127,7 +127,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.10.2-R0.1-SNAPSHOT</version>
+            <version>1.11-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     

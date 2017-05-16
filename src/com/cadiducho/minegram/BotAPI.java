@@ -630,12 +630,16 @@ public interface BotAPI {
      *              By default, updates starting with the earliest unconfirmed update are returned.
      *              An update is considered confirmed as soon as getUpdates is called with an offset higher than its update_id.
      * Watch more in https://core.telegram.org/bots/api#getupdates
-     * @param limit Limits the number of updates to be retrieved. Values between 1—100 are accepted. Defaults to 100
-     * @param timeout Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling
+     * @param limit Optional. Limits the number of updates to be retrieved. Values between 1—100 are accepted. Defaults to 100
+     * @param timeout Optional. Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling
+     * @param allowed_updates Optional. List the types of updates you want your bot to receive.
+     *                        For example, specify [“message”, “edited_channel_post”, “callback_query”] to only receive updates of these types. 
+     *                        See Update for a complete list of available update types. Specify an empty list to receive all updates regardless of type (default). 
+     *                        If not specified, the previous setting will be used.
      * @return An Array of {@link Update} objects
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException;
+    public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout, List<String> allowed_updates) throws TelegramException;
     
     /**
      * Use this method to get current webhook status. Requires no parameters. 
@@ -662,15 +666,23 @@ public interface BotAPI {
      * </ul>
      *
      * @param url         HTTPS url to send updates to. Use an empty string to remove webhook integration
-     * @param certificate Upload your public key certificate so that the root certificate in use can be checked.
+     * @param certificate Optional. Upload your public key certificate so that the root certificate in use can be checked.
      *                    See our <a href="https://core.telegram.org/bots/self-signed">self-signed guide</a> for details.
+     * @param max_connections Optional. Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery, 1-100. Defaults to 40.
+     *                        Use lower values to limit the load on your bot‘s server, and higher values to increase your bot’s throughput.
+     * @param allowed_updates Optional. List the types of updates you want your bot to receive. 
+     *                        For example, specify [“message”, “edited_channel_post”, “callback_query”] to only receive updates of these types.
+     *                        See {@link Update} for a complete list of available update types. Specify an empty list to receive all updates regardless of type (default).
+     *                        If not specified, the previous setting will be used.
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean setWebhook(String url, File certificate) throws TelegramException;
+    public Boolean setWebhook(String url, File certificate, Integer max_connections, List<String> allowed_updates) throws TelegramException;
 
     /**
      * Use this method to remove webhook integration if you decide to switch back to {@link BotAPI#getUpdates}. Returns True on success. Requires no parameters.
+     * @return On success, True is returned.
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean deleteWebhook() throws TelegramException;
 

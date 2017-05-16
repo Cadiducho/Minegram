@@ -52,7 +52,7 @@ public class UpdatesPoller {
         }
 
         private void poll() throws TelegramException {
-            List<Update> updates = bot.getUpdates(lastUpdateId + 1, 0, 3);
+            List<Update> updates = bot.getUpdates(lastUpdateId + 1, 0, 3, null);
             if (updates.size() > 0) {
                 updates.stream().forEach((update) -> {
                     if (update.getUpdate_id() > lastUpdateId) {

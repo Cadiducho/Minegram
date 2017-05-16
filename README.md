@@ -3,8 +3,8 @@ Minegram - Telegram Bot API implementation to Minecraft Servers
 > This API is a unofficial one. Lets you develop Telegram Bots easily to Bukkit Plugins! Check [Telegram Bot API](https://core.telegram.org/bots) for more info.
 
 <p align="center">
-	<a href="https://github.com/Cadiducho/Minegram/commits/master"><img src="https://img.shields.io/github/release/Cadiducho/Minegram.svg" alt="Project Version" /></a>
-	<a href="https://travis-ci.org/Cadiducho/Minegram"><img src="https://travis-ci.org/Cadiducho/Minegram.svg" alt="Project Status" /></a>
+    <a href="https://github.com/Cadiducho/Minegram/commits/master"><img src="https://img.shields.io/github/release/Cadiducho/Minegram.svg" alt="Project Version" /></a>
+    <a href="https://travis-ci.org/Cadiducho/Minegram"><img src="https://travis-ci.org/Cadiducho/Minegram.svg" alt="Project Status" /></a>
 </a>
 ## Documentation and Usage
 
@@ -17,13 +17,13 @@ If you want use Minegram as a Maven Dependency simply add repo and artifact:
 ```xml
 <repository>
 	<id>cadiducho-repo</id>
-    <url>https://cadiducho.com/repo</url>
+    <url>http://repo.cadiducho.com/</url>
 </repository>
 ...
 <dependency>
     <groupId>com.cadiducho</groupId>
     <artifactId>Minegram</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
 </dependency>
 ```
 

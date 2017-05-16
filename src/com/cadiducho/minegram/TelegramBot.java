@@ -642,12 +642,13 @@ public class TelegramBot implements BotAPI {
     }
 
     @Override
-    public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout) throws TelegramException {
+    public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout, List<String> allowed_updates) throws TelegramException {
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("offset", offset));
         par.putAll(safe("limit", limit));
         par.putAll(safe("timeout", timeout));
+        par.putAll(safe("allowed_updates", gson.toJson(allowed_updates)));
 
         final String resultBody = handleRequest(Unirest.get(apiUrl + "getUpdates").queryString(par));
         Type listType = new TypeToken<List<Update>>() {}.getType();
@@ -663,11 +664,13 @@ public class TelegramBot implements BotAPI {
     
 
     @Override
-    public Boolean setWebhook(String url, File certificate) throws TelegramException {
+    public Boolean setWebhook(String url, File certificate, Integer max_connections, List<String> allowed_updates) throws TelegramException {
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("url", url));
         par.putAll(safe("certificate", certificate));
+        par.putAll(safe("max_connections", max_connections));
+        par.putAll(safe("allowed_updates", allowed_updates));
 
         final String resultBody = handleRequest(Unirest.get(apiUrl + "setWebhook").queryString(par));
         return "True".equalsIgnoreCase(resultBody);

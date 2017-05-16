@@ -7,6 +7,7 @@
 
 package com.cadiducho.minegram.api;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -43,5 +44,15 @@ public class WebhookInfo {
      * that happened when trying to deliver an update via webhook
      */
     private String last_error_message;
+    
+    /**
+     * Optional. Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
+     */
+    private Integer max_connections;
+    
+    /**
+     * Optional. A list of update types the bot is subscribed to. Defaults to all update types
+     */
+    private List<String> allowed_updates;
     
 }
