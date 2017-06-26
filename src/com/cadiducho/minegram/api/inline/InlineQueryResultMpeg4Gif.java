@@ -34,6 +34,11 @@ public class InlineQueryResultMpeg4Gif extends InlineQueryResult {
      * Optional. Video height
      */
     private Integer mpeg4_height;
+    
+    /**
+     * Optional. Video duration
+     */
+    private Integer mpeg4_duration;
 
     /**
      * URL of the static thumbnail (jpeg or gif) for the result

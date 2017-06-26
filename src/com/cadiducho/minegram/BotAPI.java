@@ -622,7 +622,19 @@ public interface BotAPI {
      * @throws com.cadiducho.minegram.api.exception.TelegramException 
      */
     public Boolean editMessageReplyMarkup(Object chat_id, Integer message_id, String inline_message_id, InlineKeyboardMarkup reply_markup) throws TelegramException;
-            
+    
+    /**
+     * Use this method to delete a message. A message can only be deleted if it was sent less than 48 hours ago. Any such recently sent outgoing message may be deleted.
+     * Additionally, if the bot is an administrator in a group chat, it can delete any message.
+     * If the bot is an administrator in a supergroup, it can delete messages from any other user and service messages about people joining or leaving the group (other types of service messages may only be removed by the group creator).
+     * In channels, bots can only remove their own messages.
+     * @param chat_id Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param message_id Required if inline_message_id is not specified. Unique identifier of the sent message
+     * @return On success, True is returned.
+     * @throws com.cadiducho.minegram.api.exception.TelegramException 
+     */
+    public Boolean deleteMessage(Object chat_id, Integer message_id) throws TelegramException;
+    
     /**
      * Use this method to receive incoming updates using long polling (wiki). An Array of {@link Update} objects is returned.
      * @param offset Identifier of the first update to be returned. 

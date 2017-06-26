@@ -640,6 +640,19 @@ public class TelegramBot implements BotAPI {
         final String resultBody = handleRequest(Unirest.get(apiUrl + "editMessageText").queryString(par));
         return "True".equalsIgnoreCase(resultBody);
     }
+    
+    @Override
+    public Boolean deleteMessage(Object chat_id, Integer message_id) throws TelegramException {
+        checkChatId(chat_id);
+        
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("message_id", message_id));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "deleteMessage").queryString(par));
+        return "True".equalsIgnoreCase(resultBody);
+    }
 
     @Override
     public List<Update> getUpdates(Integer offset, Integer limit, Integer timeout, List<String> allowed_updates) throws TelegramException {

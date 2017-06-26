@@ -129,9 +129,9 @@ public class Message {
      */
     private Venue venue;
     /**
-     * Optional. A new member was added to the group, information about them (this member may be bot itself)
+     * Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
      */
-    private User new_chat_member;
+    private List<User> new_chat_members;
     
     /**
      * Optional. A member was removed from the group, information about them (this member may be bot itself)
@@ -207,7 +207,7 @@ public class Message {
         else if (video != null) type = Type.VIDEO;
         else if (contact != null) type = Type.CONTACT;
         else if (location != null) type = Type.LOCATION;
-        else if (new_chat_member != null) type = Type.NEW_CHAT_MEMBER;
+        else if (new_chat_members != null) type = Type.NEW_CHAT_MEMBERS;
         else if (left_chat_member != null) type = Type.LEFT_CHAT_MEMBER;
         else if (new_chat_photo != null) type = Type.NEW_CHAT_PHOTO;
         else if (delete_chat_photo) type = Type.DELETE_CHAT_PHOTO;
@@ -227,7 +227,7 @@ public class Message {
         VIDEO,
         CONTACT,
         LOCATION,
-        NEW_CHAT_MEMBER,
+        NEW_CHAT_MEMBERS,
         LEFT_CHAT_MEMBER,
         NEW_CHAT_PHOTO,
         DELETE_CHAT_PHOTO,

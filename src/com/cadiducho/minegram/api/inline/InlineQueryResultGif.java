@@ -33,6 +33,11 @@ public class InlineQueryResultGif extends InlineQueryResult {
      * Optional. Height of the GIF
      */
     private Integer gif_height;
+    
+    /**
+     * Optional. Duration of the GIF
+     */
+    private Integer gif_duration;
 
     /**
      * URL of the static thumbnail for the result (jpeg or gif)
