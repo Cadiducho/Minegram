@@ -6,6 +6,7 @@ Minegram - Telegram Bot API implementation to Minecraft Servers
     <a href="https://github.com/Cadiducho/Minegram/commits/master"><img src="https://img.shields.io/github/release/Cadiducho/Minegram.svg" alt="Project Version" /></a>
     <a href="https://travis-ci.org/Cadiducho/Minegram"><img src="https://travis-ci.org/Cadiducho/Minegram.svg" alt="Project Status" /></a>
 </a>
+
 ## Documentation and Usage
 
 Check [Minegram documentation](https://github.com/Cadiducho/Minegram/blob/master/Documentation.md).
