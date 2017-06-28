@@ -11,6 +11,8 @@ import com.cadiducho.minegram.api.inline.InlineKeyboardMarkup;
 import com.cadiducho.minegram.api.inline.InlineQueryResult;
 import com.cadiducho.minegram.api.*;
 import com.cadiducho.minegram.api.exception.*;
+import com.cadiducho.minegram.api.payment.LabeledPrice;
+import com.cadiducho.minegram.api.payment.ShippingOption;
 import java.util.List;
 import org.bukkit.plugin.Plugin;
 
@@ -605,7 +607,7 @@ public interface BotAPI {
      * @param text New text of the message
      * @param parse_mode Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
      * @param disable_web_page_preview Disables link previews for links in this message
-     * @param reply_markup 	A JSON-serialized object for an inline keyboard.
+     * @param reply_markup A JSON-serialized object for an inline keyboard.
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
@@ -743,4 +745,95 @@ public interface BotAPI {
      */
     public Boolean answerInlineQuery(String inlineQueryId, List<InlineQueryResult> results, Integer cache_time, Boolean is_personal, String next_offset,
                                     String switch_pm_text, String switch_pm_parameter) throws TelegramException;
+    
+    /**
+     * Use this method to send invoices. On success, the sent Message is returned.
+     * @param chat_id Unique identifier for the target private chat
+     * @param title Product name
+     * @param description Product description
+     * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+     * @param provider_token Payments provider token, obtained via Botfather
+     * @param start_parameter Unique deep-linking parameter that can be used to generate this invoice when used as a start parameter
+     * @param currency Three-letter ISO 4217 currency code, see more on https://core.telegram.org/bots/payments#supported-currencies
+     * @param prices Price breakdown, a list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendInvoice(Integer chat_id, String title, String description, String payload, String provider_token, String start_parameter, String currency,
+                                    List<LabeledPrice> prices) throws TelegramException;
+    
+    /**
+     * Use this method to send invoices. On success, the sent Message is returned.
+     * @param chat_id Unique identifier for the target private chat
+     * @param title Product name
+     * @param description Product description
+     * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+     * @param provider_token Payments provider token, obtained via Botfather
+     * @param start_parameter Unique deep-linking parameter that can be used to generate this invoice when used as a start parameter
+     * @param currency Three-letter ISO 4217 currency code, see more on https://core.telegram.org/bots/payments#supported-currencies
+     * @param prices Price breakdown, a list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
+     * @param photo_url URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service. People like it better when they see what they are paying for.
+     * @param photo_size Photo size
+     * @param photo_width Photo width
+     * @param photo_height Photo height
+     * @param need_name Pass True, if you require the user's full name to complete the order
+     * @param need_phone_number Pass True, if you require the user's phone number to complete the order
+     * @param need_email Pass True, if you require the user's email to complete the order
+     * @param need_shipping_address Pass True, if you require the user's shipping address to complete the order
+     * @param is_flexible Pass True, if the final price depends on the shipping method
+     * @param disable_notification Sends the message silently. Users will receive a notification with no sound.
+     * @param reply_to_message_id If the message is a reply, ID of the original message
+     * @param reply_markup A JSON-serialized object for an inline keyboard. If empty, one 'Pay total price' button will be shown. If not empty, the first button must be a Pay button.
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendInvoice(Integer chat_id, String title, String description, String payload, String provider_token, String start_parameter, String currency,
+                                    List<LabeledPrice> prices, String photo_url, Integer photo_size, Integer photo_width, Integer photo_height, Boolean need_name, Boolean need_phone_number,
+                                    Boolean need_email, Boolean need_shipping_address, Boolean is_flexible, Boolean disable_notification, Integer reply_to_message_id, InlineKeyboardMarkup reply_markup) throws TelegramException;
+    
+    /**
+     * If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. 
+     * Use this method to reply to shipping queries.
+     * On success, True is returned.
+     * @param shipping_query_id Unique identifier for the query to be answered
+     * @param ok Specify True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
+     * @return True on success
+     * @throws TelegramException 
+     */
+    public Boolean answerShippingQuery(String shipping_query_id, Boolean ok) throws TelegramException;
+    
+    /**
+     * If you sent an invoice requesting a shipping address and the parameter is_flexible was specified, the Bot API will send an Update with a shipping_query field to the bot. 
+     * Use this method to reply to shipping queries.
+     * On success, True is returned.
+     * @param shipping_query_id Unique identifier for the query to be answered
+     * @param ok Specify True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
+     * @param shipping_options Required if ok is True. A JSON-serialized array of available shipping options.
+     * @param error_message Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
+     * @return True on success
+     * @throws TelegramException 
+     */
+    public Boolean answerShippingQuery(String shipping_query_id, Boolean ok, List<ShippingOption> shipping_options, String error_message) throws TelegramException;
+    
+    /**
+     * Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries.
+     * Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
+     * @param pre_checkout_query_id Unique identifier for the query to be answered
+     * @param ok Specify True if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use False if there are any problems.
+     * @return On success, True is returned
+     * @throws TelegramException 
+     */
+    public Boolean answerPreCheckoutQuery(String pre_checkout_query_id, Boolean ok) throws TelegramException;
+    
+    /**
+     * Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field pre_checkout_query. Use this method to respond to such pre-checkout queries.
+     * Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
+     * @param pre_checkout_query_id Unique identifier for the query to be answered
+     * @param ok Specify True if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use False if there are any problems.
+     * @param error_message Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
+     * @return On success, True is returned
+     * @throws TelegramException 
+     */
+    public Boolean answerPreCheckoutQuery(String pre_checkout_query_id, Boolean ok, String error_message) throws TelegramException;
+    
 }

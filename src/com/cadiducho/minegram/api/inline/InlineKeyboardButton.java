@@ -49,4 +49,10 @@ public class InlineKeyboardButton {
      * Can be empty, in which case only the bot’s username will be inserted.
      */
     private String switch_inline_query_current_chat;
+    
+    /**
+     * Optional. Specify True, to send a Pay button.
+     * NOTE: This type of button must always be the first button in the first row.
+     */
+    private Boolean pay;
 }

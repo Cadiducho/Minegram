@@ -9,6 +9,8 @@ package com.cadiducho.minegram.api;
 
 import com.cadiducho.minegram.api.inline.ChosenInlineResult;
 import com.cadiducho.minegram.api.inline.InlineQuery;
+import com.cadiducho.minegram.api.payment.PreCheckoutQuery;
+import com.cadiducho.minegram.api.payment.ShippingQuery;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -61,4 +63,15 @@ public class Update {
      * Optional. New incoming callback query
      */
     private CallbackQuery callback_query;
+    
+    /**
+     * Optional. New incoming shipping query. Only for invoices with flexible price
+     */
+    private ShippingQuery shipping_query;
+    
+    /**
+     * Optional. New incoming pre-checkout query. Contains full information about checkout
+     */
+    private PreCheckoutQuery pre_checkout_query;
+    
 }

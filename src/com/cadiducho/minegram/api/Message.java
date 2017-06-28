@@ -7,6 +7,8 @@
 
 package com.cadiducho.minegram.api;
 
+import com.cadiducho.minegram.api.payment.Invoice;
+import com.cadiducho.minegram.api.payment.SuccessfulPayment;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -187,6 +189,17 @@ public class Message {
      * Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
      */
     private Message pinned_message;
+    
+    /**
+     * Optional. Message is an invoice for a payment, information about the invoice. More about payments »
+     */
+    private Invoice invoice;
+    
+    /**
+     * Optional. Message is a service message about a successful payment, information about the payment
+     */
+    private SuccessfulPayment successful_payment;
+    
     /**
      * Type of message, can be either text, audio, document, photo, sticker, video, contact, location, new_chat_participant
      *      left_chat_participant, new_chat_photo, delete_chat_photo or group_chat_created

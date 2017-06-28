@@ -12,6 +12,8 @@ import com.cadiducho.minegram.api.inline.InlineQueryResult;
 import com.cadiducho.minegram.api.*;
 import com.cadiducho.minegram.api.exception.TelegramException;
 import com.cadiducho.minegram.api.handlers.UpdatesPoller;
+import com.cadiducho.minegram.api.payment.LabeledPrice;
+import com.cadiducho.minegram.api.payment.ShippingOption;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
@@ -746,4 +748,81 @@ public class TelegramBot implements BotAPI {
 
         return "True".equalsIgnoreCase(resultBody);
     }
+    
+    @Override
+    public Message sendInvoice(Integer chat_id, String title, String description, String payload, String provider_token, String start_parameter, String currency,
+        List<LabeledPrice> prices) throws TelegramException {
+        return sendInvoice(chat_id, title, description, payload, provider_token, start_parameter, currency, prices, null, null, null, null, false, false, false, false, false, false, null, null);
+    }
+    
+    @Override
+    public Message sendInvoice(Integer chat_id, String title, String description, String payload, String provider_token, String start_parameter, String currency,
+            List<LabeledPrice> prices, String photo_url, Integer photo_size, Integer photo_width, Integer photo_height, Boolean need_name, Boolean need_phone_number,
+            Boolean need_email, Boolean need_shipping_address, Boolean is_flexible, Boolean disable_notification, Integer reply_to_message_id, InlineKeyboardMarkup reply_markup) throws TelegramException {
+        
+        checkChatId(chat_id);
+        checkReply(reply_markup);
+        
+        final Map<String, Object> par = new HashMap<>();
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("description", description));
+        par.putAll(safe("payload", payload));
+        par.putAll(safe("provider_token", provider_token));
+        par.putAll(safe("start_parameter", start_parameter));
+        par.putAll(safe("currency", currency));
+
+        par.put("prices", gson.toJson(prices));
+
+        par.putAll(safe("photo_url", photo_url));
+        par.putAll(safe("photo_size", photo_size));
+        par.putAll(safe("photo_width", photo_width));
+        par.putAll(safe("photo_height", photo_height));
+        par.putAll(safe("need_name", need_name));
+        par.putAll(safe("need_phone_number", need_phone_number));
+        par.putAll(safe("need_email", need_email));
+        par.putAll(safe("need_shipping_address", need_shipping_address));
+        par.putAll(safe("is_flexible", is_flexible));
+        par.putAll(safe("disable_notification", disable_notification));
+        par.putAll(safe("reply_to_message_id", reply_to_message_id));
+        par.putAll(safe("reply_markup", reply_markup));
+
+        final String resultBody = handleRequest(Unirest.post(apiUrl + "sendInvoice").fields(par));
+        return gson.fromJson(resultBody, Message.class);
+    }
+    
+    @Override
+    public Boolean answerShippingQuery(String shipping_query_id, Boolean ok) throws TelegramException {
+        return answerShippingQuery(shipping_query_id, ok, null, null);
+    }
+    
+    @Override
+    public Boolean answerShippingQuery(String shipping_query_id, Boolean ok, List<ShippingOption> shipping_options, String error_message) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        par.putAll(safe("shipping_query_id", shipping_query_id));
+        par.putAll(safe("ok", ok));
+        par.put("shipping_options", gson.toJson(shipping_options));
+        par.putAll(safe("error_message", error_message));
+        
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "answerShippingQuery").queryString(par));
+
+        return "True".equalsIgnoreCase(resultBody);
+    }
+    
+    @Override
+    public Boolean answerPreCheckoutQuery(String pre_checkout_query_id, Boolean ok) throws TelegramException {
+        return answerPreCheckoutQuery(pre_checkout_query_id, ok, null);
+    }
+    
+    @Override
+    public Boolean answerPreCheckoutQuery(String pre_checkout_query_id, Boolean ok, String error_message) throws TelegramException {
+        final Map<String, Object> par = new HashMap<>();
+        par.putAll(safe("pre_checkout_query_id", pre_checkout_query_id));
+        par.putAll(safe("ok", ok));
+        par.putAll(safe("error_message", error_message));
+
+        final String resultBody = handleRequest(Unirest.get(apiUrl + "answerPreCheckoutQuery").queryString(par));
+
+        return "True".equalsIgnoreCase(resultBody);
+    }
+    
 }
