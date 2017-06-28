@@ -37,4 +37,10 @@ public class User {
      * Optional. User‘s or bot’s username
      */
     private String username;
+    
+    /**
+     * Optional. IETF language tag of the user's language
+     */
+    private String language_code;
+    
 }

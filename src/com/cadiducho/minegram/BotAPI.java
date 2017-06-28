@@ -366,6 +366,21 @@ public interface BotAPI {
     public Message sendLocation(Object chat_id, Float latitude, Float longitude, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
     
     /**
+     * As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param video_note Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More info on Sending Files ». Sending video notes by a URL is currently unsupported
+     * @param duration Duration of sent video in seconds
+     * @param lenght Video width and height
+     * @param disable_notification Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.
+     * @param reply_to_message_id If the message is a reply, ID of the original message
+     * @param reply_markup Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user. 
+     *                  It can be {@link ReplyKeyboardMarkup}, {@link ReplyKeyboardRemove} or {@link ForceReply}.
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendVideoNote(Object chat_id, Object video_note, Integer duration, Integer lenght, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException;
+    
+    /**
      * Use this method to send information about a venue. On success, the sent {@link Message} is returned.
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param latitude Latitude of the venue
@@ -439,7 +454,7 @@ public interface BotAPI {
      */
     public static enum ChatAction {
         typing, upload_photo, record_video, upload_video, record_audio,
-        upload_audio, upload_document, find_location;
+        upload_audio, upload_document, find_location, record_video_note, upload_video_note;
     }
     
     /**
@@ -510,11 +525,9 @@ public interface BotAPI {
     public Boolean leaveChat(Object chat_id) throws TelegramException;
     
     /**
-     * se this method to unban a previously kicked user in a supergroup. 
-     * The user will not return to the group automatically, but will be able to join via link, etc. 
-     * The bot must be an administrator in the group for this to work. 
-     * Returns True on success.
-     * 
+     * Use this method to unban a previously kicked user in a supergroup or channel. 
+     * The user will not return to the group or channel automatically, but will be able to join via link, etc. 
+     * The bot must be an administrator for this to work. Returns True on success.
      * @param chat_id Unique identifier for the target group or username of the target supergroup (in the format @supergroupusername)
      * @param user_id Unique identifier of the target user
      * @return On success, True is returned.

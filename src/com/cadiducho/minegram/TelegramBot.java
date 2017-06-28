@@ -404,6 +404,33 @@ public class TelegramBot implements BotAPI {
     }
     
     @Override
+    public Message sendVideoNote(Object chat_id, Object video_note, Integer duration, Integer lenght, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
+        checkChatId(chat_id);
+        checkReply(reply_markup);
+        final Map<String, Object> par = new HashMap<>();
+        
+        par.putAll(safe("chat_id", chat_id));
+        par.putAll(safe("duration", duration));
+        par.putAll(safe("lenght", lenght));
+        par.putAll(safe("disable_notification", disable_notification));
+        par.putAll(safe("reply_to_message_id", reply_to_message_id));
+        par.putAll(safe("reply_markup", reply_markup));
+        
+        final String resultBody;
+        if (video_note instanceof String) {
+            par.put("voice", video_note);
+
+            resultBody = handleRequest(Unirest.post(apiUrl + "sendVideoNote").fields(par));
+        } else if(video_note instanceof File) {
+            resultBody = handleRequest(Unirest.post(apiUrl + "sendVideoNote").queryString(par).field("video_note", (File) video_note));
+        } else {
+            throw new IllegalArgumentException("The video note must be a string or a file!");
+        }
+
+        return gson.fromJson(resultBody, Message.class);
+    }
+    
+    @Override
     public Message sendVenue(Object chat_id, Float latitude, Float longitude, String title, String address) throws TelegramException {
         return sendVenue(chat_id, latitude, longitude, title, address, null, false, null, null);
     }

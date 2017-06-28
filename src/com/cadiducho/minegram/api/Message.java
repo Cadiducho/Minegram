@@ -110,6 +110,11 @@ public class Message {
     private Voice voice;
     
     /**
+     * Optional. Message is a video note, information about the video message
+     */
+    private VideoNote video_note;
+    
+    /**
      * Optional. Caption for the photo or video
      */
     private String caption;
