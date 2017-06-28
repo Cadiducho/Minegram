@@ -261,7 +261,7 @@ public class TelegramBot implements BotAPI {
         
         final String resultBody;
         if (document instanceof String) {
-            par.put("audio", document);
+            par.put("document", document);
 
             resultBody = handleRequest(Unirest.post(apiUrl + "sendDocument").fields(par));
         } else if(document instanceof File) {
@@ -296,7 +296,7 @@ public class TelegramBot implements BotAPI {
         
         final String resultBody;
         if (sticker instanceof String) {
-            par.put("audio", sticker);
+            par.put("sticker", sticker);
 
             resultBody = handleRequest(Unirest.post(apiUrl + "sendSticker").fields(par));
         } else if(sticker instanceof File) {
