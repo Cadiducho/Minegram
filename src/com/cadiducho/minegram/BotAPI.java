@@ -369,6 +369,28 @@ public interface BotAPI {
     
     /**
      * As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
+     * For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as {@link Audio} or {@link Document}). 
+     * On success, the sent {@link Message} is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param video_note Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More info on Sending Files ». Sending video notes by a URL is currently unsupported
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendVideoNote(Object chat_id, String video_note) throws TelegramException;
+    
+    /**
+     * As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
+     * For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as {@link Audio} or {@link Document}). 
+     * On success, the sent {@link Message} is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param video_note Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More info on Sending Files ». Sending video notes by a URL is currently unsupported
+     * @return {@link Message}
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Message sendVideoNote(Object chat_id, java.io.File video_note) throws TelegramException;
+    
+    /**
+     * As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
      * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param video_note Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More info on Sending Files ». Sending video notes by a URL is currently unsupported
      * @param duration Duration of sent video in seconds

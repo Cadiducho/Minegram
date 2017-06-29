@@ -406,6 +406,16 @@ public class TelegramBot implements BotAPI {
     }
     
     @Override
+    public Message sendVideoNote(Object chat_id, String video_note) throws TelegramException {
+        return sendVideoNote(chat_id, video_note, null, null, false, null, null);
+    }
+    
+    @Override
+    public Message sendVideoNote(Object chat_id, java.io.File video_note) throws TelegramException {
+        return sendVideoNote(chat_id, video_note, null, null, false, null, null);
+    }
+    
+    @Override
     public Message sendVideoNote(Object chat_id, Object video_note, Integer duration, Integer lenght, Boolean disable_notification, Integer reply_to_message_id, Object reply_markup) throws TelegramException {
         checkChatId(chat_id);
         checkReply(reply_markup);
