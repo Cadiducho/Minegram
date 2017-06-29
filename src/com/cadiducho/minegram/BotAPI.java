@@ -118,7 +118,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendPhoto(Object chat_id, File photo) throws TelegramException;
+    public Message sendPhoto(Object chat_id, java.io.File photo) throws TelegramException;
     
     /**
      * Use this method to send photos. On success, the sent {@link Message} is returned.
@@ -162,7 +162,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendAudio(Object chat_id, File audio) throws TelegramException;
+    public Message sendAudio(Object chat_id, java.io.File audio) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display them in the music player. 
@@ -207,7 +207,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendDocument(Object chat_id, File document) throws TelegramException;
+    public Message sendDocument(Object chat_id, java.io.File document) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -243,7 +243,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendSticker(Object chat_id, File sticker) throws TelegramException;
+    public Message sendSticker(Object chat_id, java.io.File sticker) throws TelegramException;
     
     /**
      * Use this method to send .webp stickers. On success, the sent {@link Message} is returned.
@@ -282,7 +282,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVideo(Object chat_id, File video) throws TelegramException;
+    public Message sendVideo(Object chat_id, java.io.File video) throws TelegramException;
     
     /**
      * Use this method to send general files. On success, the sent {@link Message} is returned. 
@@ -323,7 +323,7 @@ public interface BotAPI {
      * @return {@link Message}
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Message sendVoice(Object chat_id, File voice) throws TelegramException;
+    public Message sendVoice(Object chat_id, java.io.File voice) throws TelegramException;
     
     /**
      * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. 
@@ -704,7 +704,7 @@ public interface BotAPI {
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean setWebhook(String url, File certificate, Integer max_connections, List<String> allowed_updates) throws TelegramException;
+    public Boolean setWebhook(String url, java.io.File certificate, Integer max_connections, List<String> allowed_updates) throws TelegramException;
 
     /**
      * Use this method to remove webhook integration if you decide to switch back to {@link BotAPI#getUpdates}. Returns True on success. Requires no parameters.

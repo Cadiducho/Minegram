@@ -169,7 +169,7 @@ public class TelegramBot implements BotAPI {
     }
     
     @Override
-    public Message sendPhoto(Object chat_id, File photo) throws TelegramException {
+    public Message sendPhoto(Object chat_id, java.io.File photo) throws TelegramException {
         return sendPhoto(chat_id, photo, null, false, null, null);
     }
     
@@ -205,7 +205,7 @@ public class TelegramBot implements BotAPI {
     }
 
     @Override
-    public Message sendAudio(Object chat_id, File audio) throws TelegramException {
+    public Message sendAudio(Object chat_id, java.io.File audio) throws TelegramException {
         return sendAudio(chat_id, audio, null, null, null, null, false, null, null);
     }
 
@@ -244,7 +244,7 @@ public class TelegramBot implements BotAPI {
     }
 
     @Override
-    public Message sendDocument(Object chat_id, File document) throws TelegramException {
+    public Message sendDocument(Object chat_id, java.io.File document) throws TelegramException {
         return sendDocument(chat_id, document, false, null, null);
     }
 
@@ -279,7 +279,7 @@ public class TelegramBot implements BotAPI {
     }
 
     @Override
-    public Message sendSticker(Object chat_id, File sticker) throws TelegramException {
+    public Message sendSticker(Object chat_id, java.io.File sticker) throws TelegramException {
         return sendSticker(chat_id, sticker, false, null, null);
     }
 
@@ -314,7 +314,7 @@ public class TelegramBot implements BotAPI {
     }
 
     @Override
-    public Message sendVideo(Object chat_id, File video) throws TelegramException {
+    public Message sendVideo(Object chat_id, java.io.File video) throws TelegramException {
         return sendVideo(chat_id, video, null, null, null, false, null, null);
     }
 
@@ -352,7 +352,7 @@ public class TelegramBot implements BotAPI {
     }
 
     @Override
-    public Message sendVoice(Object chat_id, File voice) throws TelegramException {
+    public Message sendVoice(Object chat_id, java.io.File voice) throws TelegramException {
         return sendVoice(chat_id, voice, null, null, false, null, null);
     }
 
@@ -706,7 +706,7 @@ public class TelegramBot implements BotAPI {
     
 
     @Override
-    public Boolean setWebhook(String url, File certificate, Integer max_connections, List<String> allowed_updates) throws TelegramException {
+    public Boolean setWebhook(String url, java.io.File certificate, Integer max_connections, List<String> allowed_updates) throws TelegramException {
         final Map<String, Object> par = new HashMap<>();
         
         par.putAll(safe("url", url));
