@@ -11,7 +11,7 @@ Check this [page](https://github.com/Cadiducho/Minegram/blob/master/Bot.md)
 Usage
 -----
 
-Minegram is built to use in BukkitPlugins, so you need it installed on your server and added as a [dependency](https://github.com/Cadiducho/Minegram#maven-usage) to your plugin.
+Minegram is built to use in Bukkit plugins, so you need it installed on your server and added as a [dependency](https://github.com/Cadiducho/Minegram#maven-usage) to your plugin.
 
 Is recommended add dependency on plugin.yml:
 

@@ -541,12 +541,16 @@ public interface BotAPI {
     public Boolean kickChatMember(Object chat_id, Integer user_id) throws TelegramException;
     
     /**
-     * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
-     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * Use this method to kick a user from a group or a supergroup. In the case of supergroups, 
+     *      the user will not be able to return to the group on their own using invite links, etc., unless unbanned first. 
+     * The bot must be an administrator in the group for this to work. Returns True on success.
+     * @param chat_id Unique identifier for the target group or username of the target supergroup (in the format @supergroupusername)
+     * @param user_id Unique identifier of the target user
+     * @param until_date Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever
      * @return On success, True is returned.
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
-    public Boolean leaveChat(Object chat_id) throws TelegramException;
+    public Boolean kickChatMember(Object chat_id, Integer user_id, Integer until_date) throws TelegramException;
     
     /**
      * Use this method to unban a previously kicked user in a supergroup or channel. 
@@ -558,6 +562,162 @@ public interface BotAPI {
      * @throws com.cadiducho.minegram.api.exception.TelegramException
      */
     public Boolean unbanChatMember(Object chat_id, Integer user_id) throws TelegramException;
+    
+    /**
+     * Use this method to restrict a user in a supergroup. 
+     * The bot must be an administrator in the supergroup for this to work and must have the appropriate admin rights. 
+     * Pass True for all boolean parameters to lift restrictions from a user.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param user_id Unique identifier of the target user
+     * @return True on success.
+     * @throws TelegramException 
+     */
+    public Boolean restrictChatMember(Object chat_id, Integer user_id) throws TelegramException;
+    
+    /**
+     * Use this method to restrict a user in a supergroup. 
+     * The bot must be an administrator in the supergroup for this to work and must have the appropriate admin rights. 
+     * Pass True for all boolean parameters to lift restrictions from a user.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param user_id Unique identifier of the target user
+     * @param until_date Date when restrictions will be lifted for the user, unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
+     * @param can_send_messages Pass True, if the user can send text messages, contacts, locations and venues
+     * @param can_send_media_messages Pass True, if the user can send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages
+     * @param can_send_other_messages Pass True, if the user can send animations, games, stickers and use inline bots, implies can_send_media_messages
+     * @param can_add_web_page_previews Pass True, if the user may add web page previews to their messages, implies can_send_media_messages
+     * @return True on success.
+     * @throws TelegramException 
+     */
+    public Boolean restrictChatMember(Object chat_id, Integer user_id, Integer until_date, Boolean can_send_messages, Boolean can_send_media_messages, Boolean can_send_other_messages, Boolean can_add_web_page_previews) throws TelegramException;
+    
+    /**
+     * Use this method to promote or demote a user in a supergroup or a channel. 
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * Pass False for all boolean parameters to demote a user.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param user_id Unique identifier of the target user
+     * @return True on success.
+     * @throws TelegramException 
+     */
+    public Boolean promoteChatMember(Object chat_id, Integer user_id) throws TelegramException;
+    
+    /**
+     * Use this method to promote or demote a user in a supergroup or a channel.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * Pass False for all boolean parameters to demote a user.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param user_id Unique identifier of the target user
+     * @param can_change_info Pass True, if the administrator can change chat title, photo and other settings
+     * @param can_post_messages Pass True, if the administrator can create channel posts, channels only
+     * @param can_edit_messages Pass True, if the administrator can edit messages of other users, channels only
+     * @param can_delete_messages Pass True, if the administrator can delete messages of other users
+     * @param can_restrict_members Pass True, if the administrator can invite new users to the chat
+     * @param can_pin_messages Pass True, if the administrator can restrict, ban or unban chat members
+     * @param can_invite_users Pass True, if the administrator can pin messages, supergroups only
+     * @param can_promote_members Pass True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him)
+     * @return True on success.
+     * @throws TelegramException 
+     */
+    public Boolean promoteChatMember(Object chat_id, Integer user_id, Boolean can_change_info, Boolean can_post_messages, Boolean can_edit_messages, Boolean can_delete_messages, Boolean can_invite_users, Boolean can_restrict_members, Boolean can_pin_messages, Boolean can_promote_members) throws TelegramException;
+    
+    /**
+     * Use this method to export an invite link to a supergroup or a channel.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @return Exported invite link as String on success.
+     * @throws TelegramException 
+     */
+    public String exportChatInviteLink(Object chat_id) throws TelegramException;
+    
+    /**
+     * Use this method to set a new profile photo for the chat. 
+     * Photos can't be changed for private chats.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.     * 
+     * Note: In regular groups (non-supergroups), this method will only work if the ‘All Members Are Admins’ setting is off in the target group.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @param photo New chat photo, uploaded using multipart/form-data
+     * @return True on success
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean setChatPhoto(Object chat_id, java.io.File photo) throws TelegramException;
+    
+    /**
+     * Use this method to delete a chat photo. 
+     * Photos can't be changed for private chats. 
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @return True on success
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean deleteChatPhoto(Object chat_id) throws TelegramException;
+    
+    /**
+     * Use this method to change the title of a chat.
+     * Titles can't be changed for private chats.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.Note: In regular groups (non-supergroups), this method will only work if the ‘All Members Are Admins’ setting is off in the target group.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param title New chat title, 1-255 characters
+     * @return True on success
+     * @throws TelegramException 
+     */
+    public Boolean setChatTitle(Object chat_id, String title) throws TelegramException;
+    
+    /**
+     * Use this method to change the description of a supergroup or a channel.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @return True on success
+     * @throws TelegramException 
+     */
+    public Boolean setChatDescription(Object chat_id) throws TelegramException;
+    
+    /**
+     * Use this method to change the description of a supergroup or a channel.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param description New chat description, 0-255 characters
+     * @return True on success
+     * @throws TelegramException 
+     */
+    public Boolean setChatDescription(Object chat_id, String description) throws TelegramException;
+    
+    /**
+     * Use this method to pin a message in a supergroup. 
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param message_id Identifier of a message to pin
+     * @return On success, True is returned.
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean pinChatMessage(Object chat_id, Integer message_id) throws TelegramException;
+    
+    /**
+     * Use this method to pin a message in a supergroup. 
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param message_id Identifier of a message to pin
+     * @param disable_notification Pass True, if it is not necessary to send a notification to all group members about the new pinned message
+     * @return On success, True is returned.
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean pinChatMessage(Object chat_id, Integer message_id, Boolean disable_notification) throws TelegramException;
+    
+    /**
+     * Use this method to unpin a message in a supergroup chat.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * @param chat_id Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @return On success, True is returned.
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean unpinChatMessage(Object chat_id) throws TelegramException;
+    
+    /**
+     * Use this method for your bot to leave a group, supergroup or channel. Returns True on success.
+     * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @return On success, True is returned.
+     * @throws com.cadiducho.minegram.api.exception.TelegramException
+     */
+    public Boolean leaveChat(Object chat_id) throws TelegramException;
     
     /**
      * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.).

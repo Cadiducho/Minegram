@@ -60,6 +60,21 @@ public class Chat {
     private Boolean all_members_are_administrators;
     
     /**
+     * Optional. Chat photo. Returned only in getChat.
+     */
+    private ChatPhoto photo;
+    
+    /**
+     * Optional. Description, for supergroups and channel chats. Returned only in getChat.
+     */
+    private String description;
+    
+    /**
+     * Optional. Chat invite link, for supergroups and channel chats. Returned only in getChat
+     */
+    private String invite_link;
+    
+    /**
      * Type of chat, can be either private, group, supergroup or channel
      */
     private ChatType chatType;
